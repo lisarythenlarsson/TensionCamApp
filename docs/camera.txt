@@ -16,3 +16,10 @@ manifest
 We choose not to investigate if the device has more than one camera, since the
 Camera.open()-command accesses the primary camera, which is desired.
 
+
+We have choosen to work with API-level 16 (4.1.2) as a minimim. We motivate that
+choice with a deal we have made with our project providor, agreeing on the
+Sony Xperia Z to be used as the running device. It runs 4.1.2 (or newer) and is
+waterproof and shockproof with a big screen.
+
+Nästa handledning: 24/4 14.00 i 3211
