@@ -1,1 +1,11 @@
-“Camera applications”
+﻿“Camera applications”
+
+Camera requirements will be included in the manifest. The unit requires a camera.
+Both permission to use the hardware and permission to use the camera features will
+be requested.
+
+(In case of extension the manifest should include the location permission)
+
+
+The built-in camera application will not be used. A customized camera application
+will be built.

@@ -7,6 +7,19 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
+ 
+ 	/** asks for permission to acces camera hardware */
+ 	<uses-permission
+ 	    android:name="android.permission.CAMERA" 
+ 	/>
+ 	
+ 	/**checks if camera hardware exists*/
+ 	<uses-feature
+ 	    android:name="android.hardware.camera"  
+ 	 />
+ 	 
+ 	 
+ 
 
     <application
         android:allowBackup="true"
