@@ -9,3 +9,7 @@ be requested.
 
 The built-in camera application will not be used. A customized camera application
 will be built.
+
+
+We choose not to investigate if the device has more than one camera, since the
+Camera.open()-command accesses the primary camera, which is desired.
