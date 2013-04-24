@@ -1,4 +1,4 @@
-package com.example.tensionnsioncamapp_project;
+package com.example.tensioncamapp_project;
 
 import android.app.Activity;
 import android.hardware.Camera;
