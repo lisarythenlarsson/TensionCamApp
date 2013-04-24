@@ -21,6 +21,10 @@
  	    android:name="android.permission.CAMERA" 
  	/>
  	
+ 	<uses-permission
+ 	    android:name="android.permission.CAMERA" 
+ 	/>
+ 	
  	/**checks if camera hardware exists*/
  	<uses-feature
  	    android:name="android.hardware.camera" 
@@ -41,7 +45,7 @@
     	/>
         <activity
         
-            android:name="com.example.tensionnsioncamapp_project.MainActivity"
+            android:name="com.example.tensioncamapp_project.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,4 +1,4 @@
-﻿“Camera applications”
+“Camera applications”
 
 Camera requirements will be included in the manifest. The unit requires a camera.
 Both permission to use the hardware and permission to use the camera features will
@@ -23,3 +23,5 @@ Sony Xperia Z to be used as the running device. It runs 4.1.2 (or newer) and is
 waterproof and shockproof with a big screen.
 
 Nästa handledning: 24/4 14.00 i 3211
+
+Need to create a TestUnit for testing all our activities. 

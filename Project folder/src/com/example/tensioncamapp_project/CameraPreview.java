@@ -1,7 +1,8 @@
-package com.example.tensionnsioncamapp_project;
+package com.example.tensioncamapp_project;
 
 import java.io.IOException;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.hardware.Camera;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.view.SurfaceView;
 
 /** A basic Camera preview class */
 
+@SuppressLint("ViewConstructor")
 public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback {
     private SurfaceHolder mHolder;
     private Camera mCamera;
