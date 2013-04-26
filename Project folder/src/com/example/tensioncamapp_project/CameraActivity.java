@@ -16,7 +16,7 @@ public class CameraActivity extends Activity {
         setContentView(R.layout.activity_camera);
 
         // Create an instance of Camera. Call method from class Main Activity
-        this.mCamera = MainActivity.getCameraInstance();
+        this.mCamera = getCameraInstance();
 
         // Create our Preview view and set it as the content of our activity.
         this.mPreview = new CameraPreview(this, this.mCamera);
@@ -25,6 +25,20 @@ public class CameraActivity extends Activity {
         
     	
     }
+    
+	// Getting an instance of the Camera object.
+	public static Camera getCameraInstance(){
+	    Camera c = null;
+	    try {
+	        c = Camera.open(); // attempt to get a Camera instance
+	    }
+	    catch (Exception e){
+	    	e.printStackTrace();
+	        // Camera is not available (in use or does not exist)
+	    }
+	    return c; // returns null if camera is unavailable
+	}
+
 
 
 	
