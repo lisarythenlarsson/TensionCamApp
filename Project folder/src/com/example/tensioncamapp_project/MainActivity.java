@@ -27,12 +27,8 @@ public class MainActivity extends Activity {
  
 			@Override
 			public void onClick(View mainbutton) {
-				try{
-					Intent openCamActivity = new Intent("com.example.tensioncamapp_project.CameraActivity");
+				Intent openCamActivity = new Intent(MainActivity.this, CameraActivity.class);
 					startActivity(openCamActivity);
-				} catch (Exception e){
-					e.printStackTrace();
-				}
 			}
 				
  

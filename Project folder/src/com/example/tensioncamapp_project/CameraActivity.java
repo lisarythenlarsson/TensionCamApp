@@ -14,7 +14,6 @@ public class CameraActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
-
         // Create an instance of Camera. Call method from class Main Activity
         this.mCamera = getCameraInstance();
 
@@ -22,8 +21,6 @@ public class CameraActivity extends Activity {
         this.mPreview = new CameraPreview(this, this.mCamera);
         FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
         preview.addView(this.mPreview);
-        
-    	
     }
     
 	// Getting an instance of the Camera object.
