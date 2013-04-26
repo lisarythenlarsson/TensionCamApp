@@ -22,5 +22,5 @@
      	android:layout_centerHorizontal="true"
         android:layout_marginTop="250dp"
         android:text="@string/take_picture" 
-        android:background="@drawable/custom_buttons"/>
+        android:background="@drawable/button_default"/>
 </RelativeLayout>
