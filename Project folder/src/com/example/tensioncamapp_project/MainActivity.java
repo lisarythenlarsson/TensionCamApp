@@ -2,6 +2,7 @@ package com.example.tensioncamapp_project;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -25,9 +26,15 @@ public class MainActivity extends Activity {
 		mainbutton.setOnClickListener(new OnClickListener() {
  
 			@Override
-			public void onClick(View arg0) {
-				CameraActivity.getCameraInstance();
+			public void onClick(View mainbutton) {
+				try{
+					Intent openCamActivity = new Intent("com.example.tensioncamapp_project.CameraActivity");
+					startActivity(openCamActivity);
+				} catch (Exception e){
+					e.printStackTrace();
+				}
 			}
+				
  
 		});
 	}
