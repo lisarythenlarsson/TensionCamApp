@@ -13,12 +13,11 @@ public class CameraActivity extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    	super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
-        // Create an instance of Camera. Call method from class Main Activity
+        // Create an instance of Camera. 
         this.mCamera = getCameraInstance();
         //add the capture button
-        this.captureButton = (Button) findViewById(R.id.button_capture);
         addListenerOnButton();
         // Create our Preview view and set it as the content of our activity.
         this.mPreview = new CameraPreview(this, this.mCamera);
@@ -28,8 +27,8 @@ public class CameraActivity extends Activity {
     }
     
     private void addListenerOnButton() {
-		// TODO Auto-generated method stub
-		
+		this.captureButton = (Button) findViewById(R.id.button_capture);
+		//add an onCickListener
 	}
 
 	/** A safe way to get an instance of the Camera object. Code collected from elsewhere */
@@ -43,8 +42,6 @@ public class CameraActivity extends Activity {
         }
         return c; // returns null if camera is unavailable
     }
-
-
 
 	
 }
