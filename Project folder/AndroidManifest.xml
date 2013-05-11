@@ -20,10 +20,7 @@
  	<uses-permission
  	    android:name="android.permission.CAMERA" 
  	/>
- 	
- 	<uses-permission
- 	    android:name="android.permission.CAMERA" 
- 	/>
+ 
  	
  	/**checks if camera hardware exists*/
  	<uses-feature
