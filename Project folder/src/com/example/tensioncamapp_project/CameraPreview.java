@@ -2,7 +2,6 @@ package com.example.tensioncamapp_project;
 
 import java.io.IOException;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.hardware.Camera;
 import android.util.Log;
@@ -15,7 +14,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
 	private SurfaceHolder mHolder;
     private Camera mCamera;
 
-    @SuppressWarnings("deprecation")
+  
 	public CameraPreview(Context context, Camera camera) {
         super(context);
         this.mCamera = camera;
