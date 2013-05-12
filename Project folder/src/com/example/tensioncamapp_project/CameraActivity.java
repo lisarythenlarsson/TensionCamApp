@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 
 public class CameraActivity extends Activity {
-	private Button captureButton;
+//	private Button captureButton;
 	private Camera mCamera;
     private CameraPreview mPreview;
 
@@ -15,14 +15,14 @@ public class CameraActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
-        // Create an instance of Camera. 
+        // Create an instance of Camera.  
         this.mCamera = getCameraInstance();
         //add the capture button
         addListenerOnButton();
         // Create our Preview view and set it as the content of our activity.
         this.mPreview = new CameraPreview(this, this.mCamera);
         FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
-        preview.addView(this.mPreview);
+        preview.addView(this.mPreview); 
         
     }
     
