@@ -18,14 +18,17 @@
  
  	/** asks for permission to acces camera hardware */
  	<uses-permission
- 	    android:name="android.permission.CAMERA" 
- 	/>
+ 	    android:name="android.permission.CAMERA" />
  
+ 	/** asks for permission to write an external storage*/
+ 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+ 	
+ 	/** asks for permission to read from an external storage*/
+ 	<uses-permission android:name= "android.permission.READ_EXTERNAL_STORAGE" />
  	
  	/**checks if camera hardware exists*/
  	<uses-feature
- 	    android:name="android.hardware.camera" 
- 	 />
+ 	    android:name="android.hardware.camera"  />
  	
  	/**checks if the autofocus feature exists*/
  	<uses-feature
