@@ -24,3 +24,5 @@ waterproof and shockproof with a big screen.
 
 
 We have chosen to use an external storage, instead of the device internal storage, in order to be able to access the data from other devices. 
+
+Filename consists of a timestamp, might want to add an location in the future. Check commentary.
