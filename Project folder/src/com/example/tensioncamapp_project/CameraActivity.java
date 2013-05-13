@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 
 public class CameraActivity extends Activity {
-//	private Button captureButton;
+	private Button captureButton;
 	private Camera mCamera;
     private CameraPreview mPreview;
 
