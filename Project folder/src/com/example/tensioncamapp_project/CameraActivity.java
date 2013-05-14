@@ -38,7 +38,7 @@ public class CameraActivity extends Activity {
         //add the capture button
         addListenerOnButton();
         // In order to receive data in JPEG format
-     /**   this.mPicture = new PictureCallback() {
+       this.mPicture = new PictureCallback() {
 
     		@Override
     		public void onPictureTaken(byte[] data, Camera mCamera) {
@@ -59,7 +59,7 @@ public class CameraActivity extends Activity {
     				Log.d(TAG, "Error accessing file: " + e.getMessage());
     			}
     		}
-        };*/
+        };
     }
     
     private void addListenerOnButton() {
@@ -88,7 +88,7 @@ public class CameraActivity extends Activity {
     }
 
 	/** Create a File for saving an image or video */
-/**	static File getOutputMediaFile(int mediaTypeImage) {
+    static File getOutputMediaFile(int mediaTypeImage) {
 		if (!isExternalStorageWritable()){
 			Log.d(TAG,"Can't access the external storage");
 			return null;
@@ -118,13 +118,13 @@ public class CameraActivity extends Activity {
 
 
 	/**checking if external storage is read and writable */
-/**	public static boolean isExternalStorageWritable() {
+	public static boolean isExternalStorageWritable() {
 	    String state = Environment.getExternalStorageState();
 	    if (Environment.MEDIA_MOUNTED.equals(state)) {
 	        return true;
 	    }
 	    return false;
-	}*/
+	}
 	
 	// release the camera immediately on pause event
 	@Override
