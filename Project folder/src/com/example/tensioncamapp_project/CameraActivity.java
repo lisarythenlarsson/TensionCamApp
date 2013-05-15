@@ -18,10 +18,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 public class CameraActivity extends Activity {
-	private Button captureButton;
+	private ImageButton captureButton;
 	private Camera mCamera;
     private CameraPreview mPreview;
     private PictureCallback mPicture;
@@ -74,7 +75,7 @@ public class CameraActivity extends Activity {
     }
     
     private void addListenerOnButton() {
-		this.captureButton = (Button) findViewById(R.id.button_capture);
+		this.captureButton = (ImageButton) findViewById(R.id.button_capture_symbol);
 		this.captureButton.setOnClickListener(new OnClickListener() {
 			 
 			@Override
