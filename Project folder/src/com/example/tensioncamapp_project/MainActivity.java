@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
 	}
 
 	private void addListenerOnButton() {
-		mainbutton = (Button) findViewById(R.id.button1);
+		mainbutton = (Button) findViewById(R.id.send_button);
 		 
 		mainbutton.setOnClickListener(new OnClickListener() {
  
