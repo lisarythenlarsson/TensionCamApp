@@ -6,11 +6,14 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.Menu;
 import android.widget.ImageView;
 
 public class ViewPicActivity extends Activity {
 
+	private String TAG = "ViewPicActivity";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -27,10 +30,14 @@ public class ViewPicActivity extends Activity {
 	
 	/** Retrieves picture from external storage, decodes it to .bmp and displays it in layout */
 	private void displayImage(){
+		try{
 		File imageFile = new File("/sdcard/Pictures/TensionCamApp/IMG_19700101_010000.jpg");
 		ImageView jpgView = (ImageView)findViewById(R.id.imageView);
 		Bitmap bitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath());
 		jpgView.setImageBitmap(bitmap);
+		} catch (NullPointerException e){
+			Log.d(TAG, "No image to retrieve" + e.getMessage());
+		}
 	}
 
 }
