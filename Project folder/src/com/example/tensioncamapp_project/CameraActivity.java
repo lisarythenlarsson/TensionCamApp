@@ -30,6 +30,7 @@ public class CameraActivity extends Activity {
     private static final int MEDIA_TYPE_IMAGE = 1;
     private static final int CAMERA_REQUEST = 1888; 
     private ImageView imageView;
+    private static final int STD_DELAY = 400;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,14 +66,14 @@ public class CameraActivity extends Activity {
     				Log.d(TAG, "Error accessing file: " + e.getMessage());
     			}
     		}
-    		
-    		 protected void onActivityResult(int requestCode, int resultCode, Intent data) {  
-    		        if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {  
-    		            Bitmap photo = (Bitmap) data.getExtras().get("data"); 
-    		            imageView.setImageBitmap(photo);
-    		        }  
-    		    } 
-        };
+    	};
+    }
+    
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {  
+        if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {  
+            Bitmap photo = (Bitmap) data.getExtras().get("data"); 
+            imageView.setImageBitmap(photo);
+        }  
     }
     
     private void addListenerOnButton() {
@@ -82,9 +83,10 @@ public class CameraActivity extends Activity {
 			@Override
 			public void onClick(View capturebutton) {
 				mCamera.takePicture(null, null, mPicture);
+				delay();
+				Intent viewPic = new Intent(CameraActivity.this, ViewPicActivity.class);
+				startActivity(viewPic);
 			}
-				
- 
 		});
 	}
 
@@ -137,6 +139,13 @@ public class CameraActivity extends Activity {
 	        return true;
 	    }
 	    return false;
+	}
+	
+	/**generates delay needed for application to save new picture */
+	private void delay(){
+		try {
+			Thread.sleep(STD_DELAY);
+		} catch (Exception e) {}
 	}
 	
 	// release the camera immediately on pause event
