@@ -65,6 +65,7 @@ public class CameraActivity extends Activity {
     				Log.d(TAG, "Error accessing file: " + e.getMessage());
     			}
     		}
+    		
     		 protected void onActivityResult(int requestCode, int resultCode, Intent data) {  
     		        if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {  
     		            Bitmap photo = (Bitmap) data.getExtras().get("data"); 
@@ -76,7 +77,7 @@ public class CameraActivity extends Activity {
     
     private void addListenerOnButton() {
 		this.captureButton = (ImageButton) findViewById(R.id.button_capture_symbol);
-		this.captureButton.setOnClickListener(new OnClickListener() {
+		this.captureButton.setOnClickListener(new View.OnClickListener() {
 			 
 			@Override
 			public void onClick(View capturebutton) {
