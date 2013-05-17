@@ -25,6 +25,7 @@ public class ViewPicActivity extends Activity {
 		return true;
 	}
 	
+	/** Retrieves picture from external storage, decodes it to .bmp and displays it in layout */
 	private void displayImage(){
 		File imageFile = new File("/sdcard/Pictures/TensionCamApp/IMG_19700101_010000.jpg");
 		ImageView jpgView = (ImageView)findViewById(R.id.imageView);
