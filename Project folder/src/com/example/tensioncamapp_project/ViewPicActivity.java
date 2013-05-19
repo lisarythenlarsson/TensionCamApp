@@ -39,7 +39,7 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 	
 	private void addListenerOnButton() {
 		discard = (Button) findViewById(R.id.discard_button);
-		send = (Button) findViewById(R.id.send_button);
+		send = (Button) findViewById(R.id.analyze_button);
 		 
 		discard.setOnClickListener(this);
 		send.setOnClickListener(this);
@@ -53,7 +53,7 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 				Intent openCamActivity = new Intent(ViewPicActivity.this, CameraActivity.class);
 				startActivity(openCamActivity);
 				break;
-			case R.id.send_button:
+			case R.id.analyze_button:
 				Intent opentestActivity = new Intent(ViewPicActivity.this, MainActivity.class);
 				startActivity(opentestActivity);
 			break;			
