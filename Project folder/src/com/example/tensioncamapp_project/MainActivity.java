@@ -9,30 +9,25 @@ import android.widget.Button;
 import android.view.View.OnClickListener;
 
 public class MainActivity extends Activity {
-	
-	Button mainbutton;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
-		addListenerOnButton();
-	}
-
-	private void addListenerOnButton() {
-		mainbutton = (Button) findViewById(R.id.start_button);
-		 
-		mainbutton.setOnClickListener(new OnClickListener() {
- 
-			@Override
-			public void onClick(View mainbutton) {
-				Intent openCamActivity = new Intent(MainActivity.this, CameraActivity.class);
+		Thread timer = new Thread (){
+			public void run(){
+				try {
+					sleep(8000);
+				}catch (InterruptedException e){
+					e.printStackTrace();
+				}finally {
+					Intent openCamActivity = new Intent(MainActivity.this, CameraActivity.class);
 					startActivity(openCamActivity);
+				}
 			}
-				
- 
-		});
+		};		
+		timer.start();
 	}
 
 	@Override
