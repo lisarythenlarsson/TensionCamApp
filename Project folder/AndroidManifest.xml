@@ -12,15 +12,29 @@
         android:name="android.test.InstrumentationTestRunner"
         android:label="Test1"
         android:targetPackage="com.example.tensionnsioncamapp_project" />
- 	/** asks for permission to acces camera hardware */
+ 	
+    
+    /** asks for permission to acces camera hardware */
     <uses-permission android:name="android.permission.CAMERA" />
- 	/** asks for permission to write an external storage*/
+ 	
+    /** asks for permission to write an external storage*/
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
- 	/**checks if camera hardware exists*/
+    
+    /** asks for permission to acces flash*/
+    <permission android:name="android.permission.FLASHLIGHT"
+             android:permissionGroup="android.permission-group.HARDWARE_CONTROLS"
+             android:protectionLevel="normal"
+             android:label="@string/permlab_flashlight"
+             android:description="@string/permdesc_flashlight" />
+    
+ 	
+    /**checks if camera hardware exists*/
     <uses-feature android:name="android.hardware.camera" />
- 	/**checks if the autofocus feature exists*/
+ 	
+    /**checks if the autofocus feature exists*/
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
+    
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
