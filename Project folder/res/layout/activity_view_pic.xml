@@ -12,17 +12,17 @@
 
     <Button
         android:id="@+id/analyze_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="161dp"
+        android:layout_height="72dp"
         android:layout_gravity="right|center_horizontal|bottom"
         android:text="Analyze" />
 
     <Button
         android:id="@+id/discard_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="161dp"
+        android:layout_height="72dp"
         android:layout_gravity="left|center_horizontal|bottom"
         android:drawableLeft="@drawable/camera_symbol"
-        android:text="Take a New Picture" />
+        android:text="Take a New Picture"/>
 
 </FrameLayout>
