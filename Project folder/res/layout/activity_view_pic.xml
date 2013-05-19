@@ -12,7 +12,7 @@
 
     <Button
         android:id="@+id/analyze_button"
-        android:layout_width="159dp"
+        android:layout_width="160dp"
         android:layout_height="72dp"
         android:background="@drawable/button_analyze"
         android:layout_gravity="right|center_horizontal|bottom"
@@ -21,7 +21,7 @@
 
     <Button
         android:id="@+id/discard_button"
-        android:layout_width="159dp"
+        android:layout_width="160dp"
         android:layout_height="72dp"
         android:background="@drawable/button_discard"
         android:drawableLeft="@drawable/camera_symbol"
