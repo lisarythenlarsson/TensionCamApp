@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.hardware.Camera;
+import android.hardware.Camera.Parameters;
 import android.hardware.Camera.PictureCallback;
 import android.os.Bundle;
 import android.os.Environment;
@@ -95,6 +96,9 @@ public class CameraActivity extends Activity {
         Camera c = null;
         try {
             c = Camera.open(); // attempt to get a Camera instance
+            Camera.Parameters params = c.getParameters();//getting parameters 
+            params.setFlashMode(Parameters.FLASH_MODE_TORCH);
+            c.setParameters(params); //setting new parameters with flash
         }
         catch (Exception e){
             // Camera is not available (in use or does not exist)

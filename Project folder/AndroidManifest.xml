@@ -21,12 +21,12 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     
     /** asks for permission to acces flash*/
-    <permission android:name="android.permission.FLASHLIGHT"
+    <uses-permission android:name="android.permission.FLASHLIGHT"
              android:permissionGroup="android.permission-group.HARDWARE_CONTROLS"
-             android:protectionLevel="normal"
-             android:label="@string/permlab_flashlight"
-             android:description="@string/permdesc_flashlight" />
+             android:protectionLevel="normal"/>
     
+ 	/**checks if flash exists*/
+ 	  <uses-feature android:name="android.hardware.flash" />
  	
     /**checks if camera hardware exists*/
     <uses-feature android:name="android.hardware.camera" />
