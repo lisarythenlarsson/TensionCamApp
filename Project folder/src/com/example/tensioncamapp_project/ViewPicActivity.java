@@ -18,7 +18,7 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 
 	private String TAG = "ViewPicActivity";
 	private Button discard;
-	private Button send;
+	private Button analyze;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +39,10 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 	
 	private void addListenerOnButton() {
 		discard = (Button) findViewById(R.id.discard_button);
-		send = (Button) findViewById(R.id.analyze_button);
+		analyze = (Button) findViewById(R.id.analyze_button);
 		 
 		discard.setOnClickListener(this);
-		send.setOnClickListener(this);
+		analyze.setOnClickListener(this);
 	}
 		
 	/**Added switch-clauses to enable functionality for two buttons */	
