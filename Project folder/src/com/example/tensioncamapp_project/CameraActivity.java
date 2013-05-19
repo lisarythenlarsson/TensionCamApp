@@ -69,12 +69,12 @@ public class CameraActivity extends Activity {
     	};
     }
     
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {  
+   /** protected void onActivityResult(int requestCode, int resultCode, Intent data) {  
         if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {  
             Bitmap photo = (Bitmap) data.getExtras().get("data"); 
             imageView.setImageBitmap(photo);
         }  
-    }
+    }*/
     
     private void addListenerOnButton() {
 		this.captureButton = (ImageButton) findViewById(R.id.button_capture_symbol);
@@ -165,6 +165,18 @@ public class CameraActivity extends Activity {
 	    }
 	}
 
-}   
+/**	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+			this.mCamera = getCameraInstance();
+			this.mCamera.startPreview();
+    }*/
+
+}
+
+	
+	
+  
 	
 
