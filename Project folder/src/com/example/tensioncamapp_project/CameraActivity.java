@@ -48,7 +48,7 @@ public class CameraActivity extends Activity {
         // In order to receive data in JPEG format
        this.mPicture = new PictureCallback() {
 
-    		@Override
+    		@Override /**creates a file when a image is taken, if the file doesn't already exists*/
     		public void onPictureTaken(byte[] data, Camera mCamera) {
 
     			File pictureFile = getOutputMediaFile(MEDIA_TYPE_IMAGE);
@@ -70,13 +70,8 @@ public class CameraActivity extends Activity {
     	};
     }
     
-   /** protected void onActivityResult(int requestCode, int resultCode, Intent data) {  
-        if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {  
-            Bitmap photo = (Bitmap) data.getExtras().get("data"); 
-            imageView.setImageBitmap(photo);
-        }  
-    }*/
-    
+ 
+    /** method for adding a listener and connecting the event to next activity.*/
     private void addListenerOnButton() {
 		this.captureButton = (ImageButton) findViewById(R.id.button_capture_symbol);
 		this.captureButton.setOnClickListener(new View.OnClickListener() {
@@ -172,13 +167,13 @@ public class CameraActivity extends Activity {
 	    }
 	}
 
-/**	@Override
+
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
 			this.mCamera = getCameraInstance();
 			this.mCamera.startPreview();
-    }*/
+    }
 
 }
 
