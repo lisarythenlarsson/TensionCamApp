@@ -80,6 +80,7 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 		BitmapFactory.Options resample = new BitmapFactory.Options();
 		resample.inJustDecodeBounds = true;
 		resample.inSampleSize = 2;
+		resample.inJustDecodeBounds = false;
 		return resample;
 	}
 }
