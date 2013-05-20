@@ -147,6 +147,7 @@ public class CameraActivity extends Activity {
 		try {
 			Thread.sleep(STD_DELAY);
 		} catch (Exception e) {
+			e.getStackTrace();
 		}
 	}
 	
