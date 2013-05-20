@@ -90,6 +90,8 @@ public class CameraActivity extends Activity {
 			}
 		});
 	}
+    
+    
 
 	/** A safe way to get an instance of the Camera object. Code collected from elsewhere */
     public static Camera getCameraInstance(){
@@ -149,7 +151,8 @@ public class CameraActivity extends Activity {
 	private void delay(){
 		try {
 			Thread.sleep(STD_DELAY);
-		} catch (Exception e) {}
+		} catch (Exception e) {
+		}
 	}
 	
 	// release the camera immediately on pause event
