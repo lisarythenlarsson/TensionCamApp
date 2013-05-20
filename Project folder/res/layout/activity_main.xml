@@ -15,7 +15,9 @@
 	    android:layout_alignParentTop="true"
 	    android:layout_centerHorizontal="true"
 	    android:layout_marginTop="100dp"
-	    android:background="@drawable/logo" >
+	    android:background="@drawable/logo"
+	    android:orientation="horizontal" >
+
 	</LinearLayout>
 
 	<ProgressBar
