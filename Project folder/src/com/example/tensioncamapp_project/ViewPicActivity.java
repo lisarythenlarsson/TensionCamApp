@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.BitmapFactory.Options;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -68,11 +69,18 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 		try{
 		File imageFile = new File("/sdcard/Pictures/TensionCamApp/IMG_19700101_010000.jpg");
 		ImageView jpgView = (ImageView)findViewById(R.id.imageView);
-		Bitmap bitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath());
+		Bitmap bitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath(), resize());
 		jpgView.setImageBitmap(bitmap);
 		} catch (NullPointerException e){
 			Log.d(TAG, "No image to retrieve" + e.getMessage());
 		}
 	}
 
+	private static Options resize(){
+		BitmapFactory.Options resample = new BitmapFactory.Options();
+		resample.inJustDecodeBounds = true;
+		resample.inSampleSize = 2;
+		return resample;
+	}
 }
+
