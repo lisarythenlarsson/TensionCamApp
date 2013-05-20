@@ -29,6 +29,16 @@ public class MainActivity extends Activity {
 		};		
 		timer.start();
 	}
+	
+	
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		finish();
+	}
+
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

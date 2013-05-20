@@ -169,12 +169,12 @@ public class CameraActivity extends Activity {
 	}
 
 
-	protected void onResume() {
+	/**protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
 			this.mCamera = getCameraInstance();
 			this.mCamera.startPreview();
-    }
+    }*/
 
 }
 
