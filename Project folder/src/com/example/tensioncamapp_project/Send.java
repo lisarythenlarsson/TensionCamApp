@@ -1,6 +1,6 @@
 package com.example.tensioncamapp_project;
 
-import java.io.ByteArrayOutputStream;
+/**import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 import org.apache.http.HttpEntity;
@@ -10,11 +10,11 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.DefaultHttpClient;*/
 
 
 public class Send {
-	public static void send(String path) throws Exception {
+	/**public static void send(String path) throws Exception {
 		String filePath = "C:\\Users\\Martin\\Desktop\\Bild.bmp";//Puts the path to which picture should be analysed 
 		//String picName = "Bild.bmp";
 		
@@ -43,7 +43,7 @@ public class Send {
 			}*/
 
 			
-			ByteArrayOutputStream outstream = new ByteArrayOutputStream();//Creates a ByteArrayOutPutStream
+		/**	ByteArrayOutputStream outstream = new ByteArrayOutputStream();//Creates a ByteArrayOutPutStream
 			response.getEntity().writeTo(outstream);//Writes the response to the outstream
 			byte [] responseBody = outstream.toByteArray();//Puts the outstream to a byte array
 			
@@ -57,5 +57,5 @@ public class Send {
 			catch (Exception ignore) {
 			}
 		}
-	}
+	}*/
 }
