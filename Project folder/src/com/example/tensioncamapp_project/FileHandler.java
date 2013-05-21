@@ -42,6 +42,17 @@ public class FileHandler {
 
 		    	return mediaFile;
 	}
+    
+    public static String pathToString(){
+    	String path;
+    	
+    	File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
+	    		Environment.DIRECTORY_PICTURES), "TensionCamApp");
+    	
+    	path = mediaStorageDir.getPath() + File.separator + filename;
+    	
+    	return path;
+    }
 
    
    

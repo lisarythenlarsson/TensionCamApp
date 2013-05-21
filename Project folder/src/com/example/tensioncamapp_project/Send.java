@@ -14,7 +14,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 
 public class Send {
-	public static void main(String[] args) throws Exception {
+	public static void send(String path) throws Exception {
 		String filePath = "C:\\Users\\Martin\\Desktop\\Bild.bmp";//Puts the path to which picture should be analysed 
 		//String picName = "Bild.bmp";
 		

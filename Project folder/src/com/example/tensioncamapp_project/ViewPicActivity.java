@@ -56,6 +56,7 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 				startActivity(openCamActivity);
 				break;
 			case R.id.analyze_button:
+				
 				Intent opentestActivity = new Intent(ViewPicActivity.this, MainActivity.class);
 				startActivity(opentestActivity);
 			break;			
@@ -79,7 +80,7 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 			Log.d(TAG, "No image to retrieve" + e.getMessage());
 		}
 	}
-
+	
 	private static Options resize(){
 		BitmapFactory.Options resample = new BitmapFactory.Options();
 		resample.inJustDecodeBounds = true;
