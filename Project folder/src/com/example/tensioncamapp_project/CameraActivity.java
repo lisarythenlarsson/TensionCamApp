@@ -50,7 +50,7 @@ public class CameraActivity extends Activity {
 			 
 			@Override
 			public void onClick(View capturebutton) {
-				mCamera.takePicture(null, null, mPicture);
+				CameraActivity.this.mCamera.takePicture(null, null, CameraActivity.this.mPicture);
 				delay();
 				Intent viewPic = new Intent(CameraActivity.this, ViewPicActivity.class);
 				startActivity(viewPic);
@@ -60,7 +60,7 @@ public class CameraActivity extends Activity {
     
 
 	/** A safe way to get an instance of the Camera object. Code collected from elsewhere */
-    public static Camera getCameraInstance(){
+   public static Camera getCameraInstance(){
         Camera c = null;
         try {
         	// attempt to get a Camera instance
@@ -72,14 +72,14 @@ public class CameraActivity extends Activity {
             c.setParameters(params); 
         }
         catch (Exception e){
-            // camera is not available (in use or does not exist)
+           Log.e(TAG, "camera not available" + e.getMessage()); // (in use or does not exist)
         }
         // returns null if camera is unavailable
         return c; 
     }
 	
 	/**Generates a delay needed for application to save new pictures */
-	private void delay(){
+	private static void delay(){
 		try {
 			//Makes the program inactive for a specific amout of time
 			Thread.sleep(STD_DELAY);
@@ -93,7 +93,7 @@ public class CameraActivity extends Activity {
 	protected void onPause() {
 	    super.onPause();
 	    //Shuts down the preview shown on the screen
-	    mCamera.stopPreview();
+	    this.mCamera.stopPreview();
 	    //Calls an internal help method to restore the camera
 	    releaseCamera();             
 	}
@@ -116,7 +116,8 @@ public class CameraActivity extends Activity {
 		// deleting image from external storage
 		FileHandler.deleteFromExternalStorage();
 		// Create an instance of Camera.
-		this.mCamera = getCameraInstance();
+		if (mCamera == null){
+			this.mCamera = getCameraInstance();}
 		// Create our Preview view and set it as the content of our activity.
 		this.mPreview = new CameraPreview(this, this.mCamera);
     	FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
