@@ -34,8 +34,7 @@ public class FileHandler {
 		    	// Creating a media file name
 		    	File mediaFile;
 		    	if (mediaTypeImage == MEDIA_TYPE_IMAGE){
-		    		mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-		    				filename);
+		    		mediaFile = new File(pathToString());
 		    	} else {
 		    		return null;
 		    	}
@@ -45,12 +44,9 @@ public class FileHandler {
     
     public static String pathToString(){
     	String path;
-    	
     	File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
 	    		Environment.DIRECTORY_PICTURES), "TensionCamApp");
-    	
     	path = mediaStorageDir.getPath() + File.separator + filename;
-    	
     	return path;
     }
 
@@ -67,10 +63,8 @@ public class FileHandler {
 
 	/**deleting file if it exists in directory*/
 	public static void deleteFromExternalStorage () {
-	    File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-	    		Environment.DIRECTORY_PICTURES), "TensionCamApp");
 		try { // if file exists, it should be deleted
-	        File file = new File(mediaStorageDir, filename);
+	        File file = new File(pathToString());
 	        if(file.exists())
 	            file.delete();
 	    }
