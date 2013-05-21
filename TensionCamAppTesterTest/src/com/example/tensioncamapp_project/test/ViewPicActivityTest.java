@@ -22,8 +22,14 @@ public class ViewPicActivityTest extends
 			cam = getActivity();
 	}
 
+	
+	/**Checks that the discard button opens up the camera */
 	public void testTakePictureButton() {
 			TouchUtils.clickView(this, cam.findViewById(com.example.tensioncamapp_project.R.id.discard_button));
-			
 	} 
+	
+	/**Checks that the analyze button generates a result */
+	//public void testAnalyzeButton() {
+	//	TouchUtils.clickView(this, cam.findViewById(com.example.tensioncamapp_project.R.id.analyze_button));
+	//}
 }
