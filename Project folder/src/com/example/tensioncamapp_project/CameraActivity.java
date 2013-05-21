@@ -37,38 +37,9 @@ public class CameraActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
+        this.onResume();
         // Create an instance of Camera.  
-        this.mCamera = getCameraInstance();
-        // Create our Preview view and set it as the content of our activity.
-        this.mPreview = new CameraPreview(this, this.mCamera);
-        FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
-        preview.addView(this.mPreview); 
-        //add the capture button
-        addListenerOnButton();
-        // In order to receive data in JPEG format
-       this.mPicture = new PictureCallback() {
-
-    		@Override /**creates a file when a image is taken, if the file doesn't already exists*/
-    		public void onPictureTaken(byte[] data, Camera mCamera) {
-
-    			File pictureFile = getOutputMediaFile(MEDIA_TYPE_IMAGE);
-    			if (pictureFile == null){
-    				Log.d(TAG, "Error creating media file, check storage permissions");
-    				return;
-    			}
-
-    			try {
-    				FileOutputStream fos = new FileOutputStream(pictureFile);
-    				fos.write(data);
-    				fos.close();
-    			} catch (FileNotFoundException e) {
-    				Log.d(TAG, "File not found: " + e.getMessage());
-    			} catch (IOException e) {
-    				Log.d(TAG, "Error accessing file: " + e.getMessage());
-    			}
-    		}
-    	};
-    }
+    }   
     
  
     /** method for adding a listener and connecting the event to next activity.*/
@@ -169,12 +140,42 @@ public class CameraActivity extends Activity {
 	}
 
 
-	/**protected void onResume() {
+	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
+		//if (image exists, delete) 
 			this.mCamera = getCameraInstance();
-			this.mCamera.startPreview();
-    }*/
+			// Create our Preview view and set it as the content of our activity.
+			this.mPreview = new CameraPreview(this, this.mCamera);
+        	FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
+        	preview.addView(this.mPreview); 
+        	//add the capture button
+        	addListenerOnButton();
+        	// In order to receive data in JPEG format
+        	this.mPicture = new PictureCallback() {
+        		@Override /**creates a file when a image is taken, if the file doesn't already exists*/
+        		public void onPictureTaken(byte[] data, Camera mCamera) {
+
+    			File pictureFile = getOutputMediaFile(MEDIA_TYPE_IMAGE);
+    			if (pictureFile == null){
+    				Log.d(TAG, "Error creating media file, check storage permissions");
+    				return;
+    			}
+
+    			try {
+    				FileOutputStream fos = new FileOutputStream(pictureFile);
+    				fos.write(data);
+    				fos.close();
+    			} catch (FileNotFoundException e) {
+    				Log.d(TAG, "File not found: " + e.getMessage());
+    			} catch (IOException e) {
+    				Log.d(TAG, "Error accessing file: " + e.getMessage());
+    			}
+    		}
+    	};
+    }
+			
+    
 
 }
 
