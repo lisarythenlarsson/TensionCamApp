@@ -68,8 +68,9 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 	/** Retrieves picture from external storage, decodes it to .bmp and displays it in layout */
 	private void displayImage(){
 		try{
-		File imageFile = new File(Environment.getExternalStorageDirectory()
-                .getAbsolutePath() + File.separator + CameraActivity.filename);
+		File imageFile = new File(new File(Environment.getExternalStoragePublicDirectory(
+	    		Environment.DIRECTORY_PICTURES), "TensionCamApp")
+                .getPath() + File.separator + FileHandler.filename);
 			
 		ImageView jpgView = (ImageView)findViewById(R.id.imageView);
 		Bitmap bitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath(), resize());
