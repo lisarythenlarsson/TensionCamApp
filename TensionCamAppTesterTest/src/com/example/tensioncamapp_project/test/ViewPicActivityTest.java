@@ -5,6 +5,8 @@ import android.test.TouchUtils;
 
 import com.example.tensioncamapp_project.ViewPicActivity;
 
+
+/**Test class for ViewPicActivity. If your emulator is up and running; make sure it is unlocked... */
 public class ViewPicActivityTest extends
 	ActivityInstrumentationTestCase2<ViewPicActivity> {
 

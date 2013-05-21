@@ -33,7 +33,6 @@
  	
     /**checks if the autofocus feature exists*/
     <uses-feature android:name="android.hardware.camera.autofocus" />
-
     
     <application
         android:allowBackup="true"
