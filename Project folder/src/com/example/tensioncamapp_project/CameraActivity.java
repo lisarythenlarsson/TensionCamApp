@@ -38,7 +38,7 @@ public class CameraActivity extends Activity {
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
         onResume();
-        // Create an instance of Camera.  
+          
     }   
     
  
@@ -113,7 +113,9 @@ public class CameraActivity extends Activity {
 	/**Activates the camera and makes it appear on the screen */
 		protected void onResume() {
 		// TODO Auto-generated method stub
-		//FileHandler.deleteFromExternalStorage();
+		// deleting image from external storage
+		FileHandler.deleteFromExternalStorage();
+		// Create an instance of Camera.
 		this.mCamera = getCameraInstance();
 		// Create our Preview view and set it as the content of our activity.
 		this.mPreview = new CameraPreview(this, this.mCamera);
