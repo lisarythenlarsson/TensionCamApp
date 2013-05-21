@@ -32,6 +32,7 @@ public class CameraActivity extends Activity {
     private static final int CAMERA_REQUEST = 1888; 
     private ImageView imageView;
     private static final int STD_DELAY = 400;
+    protected static final String filename = "IMG_"+ "1" + ".jpg";
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -90,12 +91,12 @@ public class CameraActivity extends Activity {
 		    		}
 		    	}
 
-		    	// Create a media file name, might want to include location
-		    	String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date(0));
+		    	// Create a media file name
+		    	 
 		    	File mediaFile;
 		    	if (mediaTypeImage == MEDIA_TYPE_IMAGE){
 		    		mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-		    				"IMG_"+ timeStamp + ".jpg");
+		    				filename);
 		    	} else {
 		    		return null;
 		    	}

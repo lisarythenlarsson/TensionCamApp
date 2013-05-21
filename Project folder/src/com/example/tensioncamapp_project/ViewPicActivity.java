@@ -3,6 +3,7 @@ package com.example.tensioncamapp_project;
 import java.io.File;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -67,7 +68,9 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 	/** Retrieves picture from external storage, decodes it to .bmp and displays it in layout */
 	private void displayImage(){
 		try{
-		File imageFile = new File("/sdcard/Pictures/TensionCamApp/IMG_19700101_010000.jpg");
+		File imageFile = new File(Environment.getExternalStorageDirectory()
+                .getAbsolutePath() + File.separator + CameraActivity.filename);
+			
 		ImageView jpgView = (ImageView)findViewById(R.id.imageView);
 		Bitmap bitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath(), resize());
 		jpgView.setImageBitmap(bitmap);
