@@ -50,18 +50,25 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 	/**Added switch-clauses to enable functionality for two buttons */	
  	@Override
 	public void onClick(View v) {
-		switch(v.getId()) {
-			case R.id.discard_button:
-				Intent openCamActivity = new Intent(ViewPicActivity.this, CameraActivity.class);
-				startActivity(openCamActivity);
-				break;
-			case R.id.analyze_button:
-				String path = FileHandler.pathToString();
-				
-				
-				Intent opentestActivity = new Intent(ViewPicActivity.this, MainActivity.class);
-				startActivity(opentestActivity);
-			break;			
+		switch (v.getId()) {
+		case R.id.discard_button:
+			Intent openCamActivity = new Intent(ViewPicActivity.this,
+					CameraActivity.class);
+			startActivity(openCamActivity);
+			break;
+		case R.id.analyze_button:
+			String path = FileHandler.pathToString();
+			try {
+				Send.send(path);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			Intent opentestActivity = new Intent(ViewPicActivity.this,
+					MainActivity.class);
+			startActivity(opentestActivity);
+			break;
 		}
 	}
 		

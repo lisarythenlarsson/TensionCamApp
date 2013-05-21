@@ -14,8 +14,12 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 
 public class Send {
-	public static void send(String path) throws Exception {
+	public Send(){
+	}
+		
+	public static String send(String path) throws Exception {
 		String filePath = "C:\\Users\\Martin\\Desktop\\Bild.bmp";//Puts the path to which picture should be analysed 
+		String svar;
 		//String picName = "Bild.bmp";
 		
 		HttpClient httpclient = new DefaultHttpClient();//Creates a HttpClient
@@ -47,7 +51,7 @@ public class Send {
 			response.getEntity().writeTo(outstream);//Writes the response to the outstream
 			byte [] responseBody = outstream.toByteArray();//Puts the outstream to a byte array
 			
-			String svar = new String(responseBody);
+			svar = new String(responseBody);
 			System.out.println(svar);//Prints the response, in this case the result
 						
 		} finally {
@@ -57,5 +61,6 @@ public class Send {
 			catch (Exception ignore) {
 			}
 		}
+		return svar;
 	}
 }
