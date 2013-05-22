@@ -122,6 +122,7 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 			progressBar.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 			progressBar.setMessage("Analyzing...");
 			progressBar.setCancelable(false);
+			progressBar.setIndeterminate(false);
 			progressBar.show();
 			
 			String filePath = params[0];
