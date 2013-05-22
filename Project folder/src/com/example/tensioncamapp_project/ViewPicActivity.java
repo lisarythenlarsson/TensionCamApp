@@ -169,6 +169,7 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 		@Override
 		protected void onPostExecute(String result) {
 			answer = result;
+			System.out.println("Hej");
 			System.out.println(answer);
 			set(answer);
 			Intent openResultActivity = new Intent(ViewPicActivity.this, ResultActivity.class);

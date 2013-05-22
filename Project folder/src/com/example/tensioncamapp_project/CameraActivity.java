@@ -100,7 +100,7 @@ public class CameraActivity extends Activity {
             //getting current parameters
             Camera.Parameters params = c.getParameters(); 
             //setting new parameters with flash
-            params.setFlashMode(Parameters.FLASH_MODE_TORCH);
+            //params.setFlashMode(Parameters.FLASH_MODE_TORCH);
             c.setParameters(params); 
         }
         catch (Exception e){
