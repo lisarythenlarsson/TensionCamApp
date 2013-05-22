@@ -31,12 +31,14 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 public class ViewPicActivity extends Activity implements View.OnClickListener {
 
 	private String TAG = "ViewPicActivity";
 	private Button discard;
 	private Button analyze;
+	private ProgressBar progressBar;
 	
 	private static String result;
 
@@ -73,6 +75,8 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 			startActivity(openCamActivity);
 			break;
 		case R.id.analyze_button:
+			progressBar = (ProgressBar) findViewById(R.id.progressBar);
+			progressBar.setVisibility(0);
 			System.out.println("test1");
 			String path = FileHandler.pathToString();
 			System.out.println("test2");
@@ -118,13 +122,7 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 
 		@Override
 		protected String doInBackground(String... params) {
-			ProgressDialog progressBar =  new ProgressDialog(getApplicationContext()); 
-			progressBar.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-			progressBar.setMessage("Analyzing...");
-			progressBar.setCancelable(false);
-			progressBar.setIndeterminate(false);
-			progressBar.show();
-			
+				
 			String filePath = params[0];
 			String responseAnswer = "3";
 
@@ -172,7 +170,6 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 				} catch (Exception ignore) {
 				}
 			}
-			progressBar.dismiss();
 			return responseAnswer;
 		}
 
