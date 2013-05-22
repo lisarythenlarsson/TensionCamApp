@@ -36,7 +36,7 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 	private Button discard;
 	private Button analyze;
 	
-	private String result;
+	private static String result;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -71,11 +71,6 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 			startActivity(openCamActivity);
 			break;
 		case R.id.analyze_button:
-
-			Intent openResultActivity = new Intent(ViewPicActivity.this, ResultActivity.class);
-			startActivity(openResultActivity);
-			
-			
 			System.out.println("test1");
 			String path = FileHandler.pathToString();
 			System.out.println("test2");
@@ -176,6 +171,8 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 			answer = result;
 			System.out.println(answer);
 			set(answer);
+			Intent openResultActivity = new Intent(ViewPicActivity.this, ResultActivity.class);
+			startActivity(openResultActivity);
 		}
 
 	}
@@ -184,7 +181,7 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 		result = s;
 	}
 	
-	public String get(String s){
+	public static String get(){
 		return result;
 	}
 	

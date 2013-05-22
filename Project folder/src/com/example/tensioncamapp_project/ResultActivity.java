@@ -20,8 +20,9 @@ public class ResultActivity extends Activity implements View.OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_result);
 		newPic = (Button) findViewById(R.id.new_picture_button);
+	
 		Result = (TextView) findViewById(R.id.text_result);
-		Result.setText("Test");
+		Result.setText("The result is: " + ViewPicActivity.get() + " pixels");
 		addListenerOnButton();
 	}
 
