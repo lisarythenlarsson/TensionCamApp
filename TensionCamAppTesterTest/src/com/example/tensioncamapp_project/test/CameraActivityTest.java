@@ -29,6 +29,7 @@ public class CameraActivityTest extends ActivityInstrumentationTestCase2<CameraA
 		TouchUtils.clickView(this, cam.findViewById(com.example.tensioncamapp_project.R.id.button_capture_symbol));
 	}
 	
+	//Checks that the method getCameraInstance returns an object of the class Camera
 	public void testGetCameraInstance() {
         assertTrue(cam.getCameraInstance().getClass() == Camera.class);
  
