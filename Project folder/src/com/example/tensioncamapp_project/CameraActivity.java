@@ -37,7 +37,87 @@ public class CameraActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
-        this.mCamera = getCameraInstance();
+        onResume();
+          
+    }   
+    
+ 
+    /**Connects the capture button on the view to a listener
+     *  and redirects the client to a preview of the captures image*/
+    private void addListenerOnButton() {
+		this.captureButton = (ImageButton) findViewById(R.id.button_capture_symbol);
+		this.captureButton.setOnClickListener(new View.OnClickListener() {
+			 
+			@Override
+			public void onClick(View capturebutton) {
+				CameraActivity.this.mCamera.takePicture(null, null, CameraActivity.this.mPicture);
+				delay();
+				Intent viewPic = new Intent(CameraActivity.this, ViewPicActivity.class);
+				startActivity(viewPic);
+			}
+		});
+	}
+    
+
+	/** A safe way to get an instance of the Camera object. Code collected from elsewhere */
+   public static Camera getCameraInstance(){
+        Camera c = null;
+        try {
+        	// attempt to get a Camera instance
+            c = Camera.open(); 
+            //getting current parameters
+            Camera.Parameters params = c.getParameters(); 
+            //setting new parameters with flash
+            params.setFlashMode(Parameters.FLASH_MODE_TORCH);
+            c.setParameters(params); 
+        }
+        catch (Exception e){
+           Log.e(TAG, "camera not available" + e.getMessage()); // (in use or does not exist)
+        }
+        // returns null if camera is unavailable
+        return c; 
+    }
+	
+	/**Generates a delay needed for application to save new pictures */
+	private static void delay(){
+		try {
+			//Makes the program inactive for a specific amout of time
+			Thread.sleep(STD_DELAY);
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
+	}
+	
+	/**Method for releasing the camera immediately on pause event*/
+	@Override
+	protected void onPause() {
+	    super.onPause();
+	    //Shuts down the preview shown on the screen
+	    this.mCamera.stopPreview();
+	    //Calls an internal help method to restore the camera
+	    releaseCamera();             
+	}
+
+
+    /**Help method to release the camera */
+	private void releaseCamera(){
+		//Checks if there is a camera object active
+		if (this.mCamera != null){
+			//Releases the camera
+	        this.mCamera.release();
+	        //Restore the camera object to its initial state
+	        this.mCamera = null;
+	    }
+	}
+	
+	/**Activates the camera and makes it appear on the screen */
+		protected void onResume() {
+		// TODO Auto-generated method stub
+		// deleting image from external storage
+		FileHandler.deleteFromExternalStorage();
+		// Create an instance of Camera.
+		if (mCamera == null){
+			this.mCamera = getCameraInstance();}
 		// Create our Preview view and set it as the content of our activity.
 		this.mPreview = new CameraPreview(this, this.mCamera);
     	FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
@@ -70,85 +150,8 @@ public class CameraActivity extends Activity {
 			}
 		}
 	};
-        // Create an instance of Camera.  
-    }   
-    
- 
-    /**Connects the capture button on the view to a listener
-     *  and redirects the client to a preview of the captures image*/
-    private void addListenerOnButton() {
-		this.captureButton = (ImageButton) findViewById(R.id.button_capture_symbol);
-		this.captureButton.setOnClickListener(new View.OnClickListener() {
-			 
-			@Override
-			public void onClick(View capturebutton) {
-				mCamera.takePicture(null, null, mPicture);
-				delay();
-				Intent viewPic = new Intent(CameraActivity.this, ViewPicActivity.class);
-				startActivity(viewPic);
-			}
-		});
-	}
-    
-
-	/** A safe way to get an instance of the Camera object. Code collected from elsewhere */
-    public static Camera getCameraInstance(){
-        Camera c = null;
-        try {
-        	// attempt to get a Camera instance
-            c = Camera.open(); 
-            //getting current parameters
-            Camera.Parameters params = c.getParameters(); 
-            //setting new parameters with flash
-            params.setFlashMode(Parameters.FLASH_MODE_TORCH);
-            c.setParameters(params); 
-        }
-        catch (Exception e){
-            // camera is not available (in use or does not exist)
-        }
-        // returns null if camera is unavailable
-        return c; 
-    }
-	
-	/**Generates a delay needed for application to save new pictures */
-	private void delay(){
-		try {
-			//Makes the program inactive for a specific amout of time
-			Thread.sleep(STD_DELAY);
-		} catch (Exception e) {
-			e.getStackTrace();
-		}
-	}
-	
-	/**Method for releasing the camera immediately on pause event*/
-	@Override
-	protected void onPause() {
-	    super.onPause();
-	    //Shuts down the preview shown on the screen
-	    mCamera.stopPreview();
-	    //Calls an internal help method to restore the camera
-	    releaseCamera();             
-	}
-
-
-    /**Help method to release the camera */
-	private void releaseCamera(){
-		//Checks if there is a camera object active
-		if (this.mCamera != null){
-			//Releases the camera
-	        this.mCamera.release();
-	        //Restore the camera object to its initial state
-	        this.mCamera = null;
-	    }
-	}
-	
-	/**Activates the camera and makes it appear on the screen */
-	/**protected void onResume() {
-		// TODO Auto-generated method stub
-		FileHandler.deleteFromExternalStorage();
-			
     	super.onResume();
-    }*/
+    }
 			
 	
 
