@@ -28,7 +28,7 @@ public class CameraActivity extends Activity {
     private CameraPreview mPreview;
     private PictureCallback mPicture;
     private ImageView imageView;
-    private static final int STD_DELAY = 400;
+    private static final int STD_DELAY = 1000;
     private static final int MEDIA_TYPE_IMAGE = 1;
 	protected static final String TAG = "CameraActivity";
     
