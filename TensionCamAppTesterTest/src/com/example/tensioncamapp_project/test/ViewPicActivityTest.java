@@ -36,5 +36,7 @@ public class ViewPicActivityTest extends
 	/**Checks that the analyze button generates a result */
 	//public void testAnalyzeButton() {
 	//	TouchUtils.clickView(this, cam.findViewById(com.example.tensioncamapp_project.R.id.analyze_button));
+	//	sleep(XXX);
+	//	getTextView(!isEmpty());
 	//}
 }
