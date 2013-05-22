@@ -32,6 +32,7 @@ public class CameraActivityTest extends ActivityInstrumentationTestCase2<CameraA
 		//cam.delay(); change visibility from private to protected in CameraActivity
 		assertTrue(!FileHandler.pathToString().isEmpty()); //checks that there is a file stores in the directory
 	
+	}	
 		
 	//Checks that the method getCameraInstance returns an object of the class Camera
 	public void testGetCameraInstance() {
