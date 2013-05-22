@@ -9,8 +9,22 @@
     tools:context=".ResultActivity" >
 
     <TextView
+        android:id="@+id/text_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:text="@string/hello_world" />
+
+    <Button
+        android:id="@+id/new_picture_button"
+        android:layout_width="160dp"
+        android:layout_height="72dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/button_discard"
+        android:drawableLeft="@drawable/camera_symbol"
+        android:text="Take a New Picture"
+        android:textSize="20sp" />
 
 </RelativeLayout>
