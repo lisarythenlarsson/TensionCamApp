@@ -27,4 +27,7 @@ proguard/
 *.ipr
 *.iws
 .idea/
+
+# OS-specific thumb files
 .DS_Store
+Thumbs.db

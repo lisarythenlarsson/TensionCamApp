@@ -1,5 +1,7 @@
 package com.example.tensioncamapp_project;
 
+
+import android.hardware.Camera;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
