@@ -20,50 +20,16 @@ public class CameraActivity extends Activity {
 	private Camera mCamera;
     private CameraPreview mPreview;
     private PictureCallback mPicture;
-    private static final int STD_DELAY = 400;
+    private static final int STD_DELAY = 1000;
     private static final int MEDIA_TYPE_IMAGE = 1;
 	protected static final String TAG = "CameraActivity";
-    
+	    
     /**Starts up the camera */
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
-        this.mCamera = getCameraInstance();
-		// Create our Preview view and set it as the content of our activity.
-		this.mPreview = new CameraPreview(this, this.mCamera);
-		FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
-		preview.addView(this.mPreview); 
-		//add the capture button
-		addListenerOnButton();
-		// In order to receive data in JPEG format
-		this.mPicture = new PictureCallback() {
-		
-		/**Creates a file when a image is taken, if the file doesn't already exists*/
-		@Override 
-		public void onPictureTaken(byte[] data, Camera mCamera) {
-
-		File pictureFile = FileHandler.getOutputMediaFile(MEDIA_TYPE_IMAGE);
-		
-		if (pictureFile == null){
-			Log.d(TAG, "Error creating media file, check storage permissions");
-			return;
-		}
-
-		try {
-			//Writes the image to the disc
-			FileOutputStream fos = new FileOutputStream(pictureFile);
-			fos.write(data);
-			fos.close();
-		} catch (FileNotFoundException e) {
-			Log.d(TAG, "File not found: " + e.getMessage());
-		} catch (IOException e) {
-			Log.d(TAG, "Error accessing file: " + e.getMessage());
-		}
-	}
-};
-          
-    }   
+       }   
     
 
 	/**Connects the capture button on the view to a listener
@@ -76,6 +42,7 @@ public class CameraActivity extends Activity {
 			public void onClick(View capturebutton) {
 				CameraActivity.this.mCamera.takePicture(null, null, CameraActivity.this.mPicture);
 				delay();
+				
 				Intent viewPic = new Intent(CameraActivity.this, ViewPicActivity.class);
 				startActivity(viewPic);
 			}
@@ -99,6 +66,7 @@ public class CameraActivity extends Activity {
            Log.e(TAG, "camera not available" + e.getMessage()); // (in use or does not exist)
         }
         // returns null if camera is unavailable
+        System.out.println("printar c" + c);
         return c; 
     }
 	
@@ -115,16 +83,22 @@ public class CameraActivity extends Activity {
 	/**Method for releasing the camera immediately on pause event*/
 	@Override
 	protected void onPause() {
-	    super.onPause();
 	    //Shuts down the preview shown on the screen
 	    this.mCamera.stopPreview();
 	    //Calls an internal help method to restore the camera
-	    //releaseCamera();             
+	    try{
+	    	releaseCamera();
+	    }catch(NullPointerException e){
+	    	
+	    	Log.e(TAG, e.getMessage());
+	    }
+	    super.onPause();
 	}
 
 
     /**Help method to release the camera */
 	private void releaseCamera(){
+		mPreview.getHolder().removeCallback(mPreview);
 		//Checks if there is a camera object active
 		if (this.mCamera != null){
 			//Releases the camera
@@ -139,16 +113,56 @@ public class CameraActivity extends Activity {
 		// TODO Auto-generated method stub
 		// deleting image from external storage
 		FileHandler.deleteFromExternalStorage();
-		// Create an instance of Camera.	
-    	super.onResume();
-    }
-			
+		if(this.mCamera == null){
+		// Create an instance of Camera.
+		this.mCamera = getCameraInstance();
+		}
+		// Create our Preview view and set it as the content of our activity.
+		this.mPreview = new CameraPreview(this, this.mCamera);
+		FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
+		preview.addView(this.mPreview);
+		// add the capture button
+		addListenerOnButton();
+		// In order to receive data in JPEG format
+		this.mPicture = new PictureCallback() {
+
+			/**
+			 * Creates a file when a image is taken, if the file doesn't already
+			 * exists
+			 */
+			@Override
+			public void onPictureTaken(byte[] data, Camera mCamera) {
+
+				File pictureFile = FileHandler
+						.getOutputMediaFile(MEDIA_TYPE_IMAGE);
+
+				if (pictureFile == null) {
+					Log.d(TAG,
+							"Error creating media file, check storage permissions");
+					return;
+				}
+
+				try {
+					// Writes the image to the disc
+					FileOutputStream fos = new FileOutputStream(pictureFile);
+					fos.write(data);
+					fos.close();
+				} catch (FileNotFoundException e) {
+					Log.d(TAG, "File not found: " + e.getMessage());
+				} catch (IOException e) {
+					Log.d(TAG, "Error accessing file: " + e.getMessage());
+				}
+			}
+		};
+		
+		super.onResume();
+	}
 		 
-	    @Override /**Resets when activity destroyed*/
-		protected void onDestroy() {
+	//    @Override /**Resets when activity destroyed*/
+		/*protected void onDestroy() {
 			super.onDestroy();
 			releaseCamera();
-		}
+		}*/
 
 
 }
