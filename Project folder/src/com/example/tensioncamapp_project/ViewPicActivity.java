@@ -19,6 +19,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -116,6 +118,12 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 
 		@Override
 		protected String doInBackground(String... params) {
+			ProgressDialog progressBar =  new ProgressDialog(getApplicationContext()); 
+			progressBar.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+			progressBar.setMessage("Analyzing...");
+			progressBar.setCancelable(false);
+			progressBar.show();
+			
 			String filePath = params[0];
 			String responseAnswer = "3";
 
@@ -163,6 +171,7 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 				} catch (Exception ignore) {
 				}
 			}
+			progressBar.dismiss();
 			return responseAnswer;
 		}
 
