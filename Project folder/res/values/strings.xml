@@ -7,5 +7,6 @@
     <string name="take_picture">Take a picture</string>
     <string name="capture_picture">Capture</string>
     <string name="title_activity_view_pic">ViewPicActivity</string>
+    <string name="title_activity_result">ResultActivity</string>
 
 </resources>

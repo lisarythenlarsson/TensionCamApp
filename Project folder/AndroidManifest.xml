@@ -12,39 +12,32 @@
         android:name="android.test.InstrumentationTestRunner"
         android:label="Test1"
         android:targetPackage="com.example.tensionnsioncamapp_project" />
- 	
-    
-    /** asks for permission to acces camera hardware */
+    /** asks for permission to acces camera hardware */
     <uses-permission android:name="android.permission.CAMERA" />
- 	
-    /** asks for permission to write an external storage*/
+    /** asks for permission to write an external storage*/
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    
-    /** asks for permission to acces flash*/
-    <uses-permission android:name="android.permission.FLASHLIGHT"
-             android:permissionGroup="android.permission-group.HARDWARE_CONTROLS"
-             android:protectionLevel="normal"/>
-    
- 	/**checks if flash exists*/
- 	  <uses-feature android:name="android.hardware.flash" />
- 	
-    /**checks if camera hardware exists*/
+    /** asks for permission to acces flash*/
+    <uses-permission
+        android:name="android.permission.FLASHLIGHT"
+        android:permissionGroup="android.permission-group.HARDWARE_CONTROLS"
+        android:protectionLevel="normal" />
+ 	/**checks if flash exists*/
+    <uses-feature android:name="android.hardware.flash" />
+    /**checks if camera hardware exists*/
     <uses-feature android:name="android.hardware.camera" />
- 	
-    /**checks if the autofocus feature exists*/
+    /**checks if the autofocus feature exists*/
     <uses-feature android:name="android.hardware.camera.autofocus" />
-    
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo_launcher"
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Black" >
-       
         <uses-library android:name="android.test.runner" />
 
         <activity
             android:name="com.example.tensioncamapp_project.MainActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -63,6 +56,12 @@
             android:name="com.example.tensioncamapp_project.ViewPicActivity"
             android:label="@string/title_activity_view_pic" >
         </activity>
+        <activity
+            android:name="com.example.tensioncamapp_project.ResultActivity"
+            android:label="@string/title_activity_result" >
+        </activity>
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

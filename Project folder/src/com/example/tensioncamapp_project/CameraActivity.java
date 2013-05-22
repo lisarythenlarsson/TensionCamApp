@@ -27,51 +27,55 @@ public class CameraActivity extends Activity {
 	private Camera mCamera;
     private CameraPreview mPreview;
     private PictureCallback mPicture;
-    private static final String TAG = "File"; 
-    private static final int MEDIA_TYPE_IMAGE = 1;
-    private static final int CAMERA_REQUEST = 1888; 
     private ImageView imageView;
-    private static final int STD_DELAY = 400;
+    private static final int STD_DELAY = 1000;
+    private static final int MEDIA_TYPE_IMAGE = 1;
+	protected static final String TAG = "CameraActivity";
     
+    /**Starts up the camera */
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
-        // Create an instance of Camera.  
         this.mCamera = getCameraInstance();
-        // Create our Preview view and set it as the content of our activity.
-        this.mPreview = new CameraPreview(this, this.mCamera);
-        FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
-        preview.addView(this.mPreview); 
-        //add the capture button
-        addListenerOnButton();
-        // In order to receive data in JPEG format
-       this.mPicture = new PictureCallback() {
-
-    		@Override /**creates a file when a image is taken, if the file doesn't already exists*/
+		// Create our Preview view and set it as the content of our activity.
+		this.mPreview = new CameraPreview(this, this.mCamera);
+    	FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
+    	preview.addView(this.mPreview); 
+    	//add the capture button
+    	addListenerOnButton();
+    	// In order to receive data in JPEG format
+    	this.mPicture = new PictureCallback() {
+    		
+    		/**Creates a file when a image is taken, if the file doesn't already exists*/
+    		@Override 
     		public void onPictureTaken(byte[] data, Camera mCamera) {
 
-    			File pictureFile = getOutputMediaFile(MEDIA_TYPE_IMAGE);
-    			if (pictureFile == null){
-    				Log.d(TAG, "Error creating media file, check storage permissions");
-    				return;
-    			}
+			File pictureFile = FileHandler.getOutputMediaFile(MEDIA_TYPE_IMAGE);
+			
+			if (pictureFile == null){
+				Log.d(TAG, "Error creating media file, check storage permissions");
+				return;
+			}
 
-    			try {
-    				FileOutputStream fos = new FileOutputStream(pictureFile);
-    				fos.write(data);
-    				fos.close();
-    			} catch (FileNotFoundException e) {
-    				Log.d(TAG, "File not found: " + e.getMessage());
-    			} catch (IOException e) {
-    				Log.d(TAG, "Error accessing file: " + e.getMessage());
-    			}
-    		}
-    	};
-    }
+			try {
+				//Writes the image to the disc
+				FileOutputStream fos = new FileOutputStream(pictureFile);
+				fos.write(data);
+				fos.close();
+			} catch (FileNotFoundException e) {
+				Log.d(TAG, "File not found: " + e.getMessage());
+			} catch (IOException e) {
+				Log.d(TAG, "Error accessing file: " + e.getMessage());
+			}
+		}
+	};
+        // Create an instance of Camera.  
+    }   
     
  
-    /** method for adding a listener and connecting the event to next activity.*/
+    /**Connects the capture button on the view to a listener
+     *  and redirects the client to a preview of the captures image*/
     private void addListenerOnButton() {
 		this.captureButton = (ImageButton) findViewById(R.id.button_capture_symbol);
 		this.captureButton.setOnClickListener(new View.OnClickListener() {
@@ -86,95 +90,67 @@ public class CameraActivity extends Activity {
 		});
 	}
     
-    
 
 	/** A safe way to get an instance of the Camera object. Code collected from elsewhere */
     public static Camera getCameraInstance(){
         Camera c = null;
         try {
-            c = Camera.open(); // attempt to get a Camera instance
-            Camera.Parameters params = c.getParameters();//getting parameters 
+        	// attempt to get a Camera instance
+            c = Camera.open(); 
+            //getting current parameters
+            Camera.Parameters params = c.getParameters(); 
+            //setting new parameters with flash
             params.setFlashMode(Parameters.FLASH_MODE_TORCH);
-            c.setParameters(params); //setting new parameters with flash
+            c.setParameters(params); 
         }
         catch (Exception e){
-            // Camera is not available (in use or does not exist)
+            // camera is not available (in use or does not exist)
         }
-        return c; // returns null if camera is unavailable
+        // returns null if camera is unavailable
+        return c; 
     }
-
-	/** Create a File for saving an image or video */
-    static File getOutputMediaFile(int mediaTypeImage) {
-		if (!isExternalStorageWritable()){
-			Log.d(TAG,"Can't access the external storage");
-			return null;
-		}
-			File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-	    		Environment.DIRECTORY_PICTURES), "TensionCamApp");
-		    	// Creating the storage directory if it does not exist
-		    	if (! mediaStorageDir.exists()){
-		    		if (! mediaStorageDir.mkdirs()){
-		    			Log.d("TensionCamApp", "failed to create directory");
-		    			return null;
-		    		}
-		    	}
-
-		    	// Create a media file name, might want to include location
-		    	String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date(0));
-		    	File mediaFile;
-		    	if (mediaTypeImage == MEDIA_TYPE_IMAGE){
-		    		mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-		    				"IMG_"+ timeStamp + ".jpg");
-		    	} else {
-		    		return null;
-		    	}
-
-		    	return mediaFile;
-	}
-
-
-	/**checking if external storage is read and writable */
-	public static boolean isExternalStorageWritable() {
-	    String state = Environment.getExternalStorageState();
-	    if (Environment.MEDIA_MOUNTED.equals(state)) {
-	        return true;
-	    }
-	    return false;
-	}
 	
-	/**generates delay needed for application to save new picture */
+	/**Generates a delay needed for application to save new pictures */
 	private void delay(){
 		try {
+			//Makes the program inactive for a specific amout of time
 			Thread.sleep(STD_DELAY);
 		} catch (Exception e) {
 			e.getStackTrace();
 		}
 	}
 	
-	// release the camera immediately on pause event
+	/**Method for releasing the camera immediately on pause event*/
 	@Override
 	protected void onPause() {
 	    super.onPause();
+	    //Shuts down the preview shown on the screen
 	    mCamera.stopPreview();
+	    //Calls an internal help method to restore the camera
 	    releaseCamera();             
 	}
 
 
-    // release the camera for other applications
+    /**Help method to release the camera */
 	private void releaseCamera(){
+		//Checks if there is a camera object active
 		if (this.mCamera != null){
-	        this.mCamera.release();        
+			//Releases the camera
+	        this.mCamera.release();
+	        //Restore the camera object to its initial state
 	        this.mCamera = null;
 	    }
 	}
-
-
+	
+	/**Activates the camera and makes it appear on the screen */
 	/**protected void onResume() {
 		// TODO Auto-generated method stub
-		super.onResume();
-			this.mCamera = getCameraInstance();
-			this.mCamera.startPreview();
+		FileHandler.deleteFromExternalStorage();
+			
+    	super.onResume();
     }*/
+			
+	
 
 }
 
