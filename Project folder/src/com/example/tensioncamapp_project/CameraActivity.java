@@ -59,24 +59,6 @@ public class CameraActivity extends Activity {
 	}
     
 
-	/** A safe way to get an instance of the Camera object. Code collected from elsewhere */
-   public static Camera getCameraInstance(){
-        Camera c = null;
-        try {
-        	// attempt to get a Camera instance
-            c = Camera.open(); 
-            //getting current parameters
-            Camera.Parameters params = c.getParameters(); 
-            //setting new parameters with flash
-            params.setFlashMode(Parameters.FLASH_MODE_TORCH);
-            c.setParameters(params); 
-        }
-        catch (Exception e){
-           Log.e(TAG, "camera not available" + e.getMessage()); // (in use or does not exist)
-        }
-        // returns null if camera is unavailable
-        return c; 
-    }
 	
 	/**Generates a delay needed for application to save new pictures */
 	private static void delay(){
@@ -95,29 +77,18 @@ public class CameraActivity extends Activity {
 	    //Shuts down the preview shown on the screen
 	    this.mCamera.stopPreview();
 	    //Calls an internal help method to restore the camera
-	    releaseCamera();             
+	    TensionCamera.releaseCamera();             
 	}
 
 
-    /**Help method to release the camera */
-	private void releaseCamera(){
-		//Checks if there is a camera object active
-		if (this.mCamera != null){
-			//Releases the camera
-	        this.mCamera.release();
-	        //Restore the camera object to its initial state
-	        this.mCamera = null;
-	    }
-	}
 	
 	/**Activates the camera and makes it appear on the screen */
 		protected void onResume() {
-		// TODO Auto-generated method stub
 		// deleting image from external storage
 		FileHandler.deleteFromExternalStorage();
 		// Create an instance of Camera.
 		if (mCamera == null){
-			this.mCamera = getCameraInstance();}
+			this.mCamera = TensionCamera.getCameraInstance();}
 		// Create our Preview view and set it as the content of our activity.
 		this.mPreview = new CameraPreview(this, this.mCamera);
     	FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
@@ -130,7 +101,7 @@ public class CameraActivity extends Activity {
     		/**Creates a file when a image is taken, if the file doesn't already exists*/
     		@Override 
     		public void onPictureTaken(byte[] data, Camera mCamera) {
-
+    		//creating file for storage on external storage
 			File pictureFile = FileHandler.getOutputMediaFile(MEDIA_TYPE_IMAGE);
 			
 			if (pictureFile == null){
