@@ -65,13 +65,6 @@ public class CameraActivity extends Activity {
           
     }   
     
- 
-    @Override
-	protected void onDestroy() {
-		super.onDestroy();
-		releaseCamera();
-	}
-
 
 	/**Connects the capture button on the view to a listener
      *  and redirects the client to a preview of the captures image*/
@@ -150,7 +143,13 @@ public class CameraActivity extends Activity {
     	super.onResume();
     }
 			
-	
+		 
+	    @Override /**Resets when activity destroyed*/
+		protected void onDestroy() {
+			super.onDestroy();
+			releaseCamera();
+		}
+
 
 }
 

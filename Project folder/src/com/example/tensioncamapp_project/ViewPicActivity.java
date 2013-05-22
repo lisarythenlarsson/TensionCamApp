@@ -1,7 +1,7 @@
 package com.example.tensioncamapp_project;
 
 import java.io.File;
-import java.util.logging.FileHandler;
+
 
 import android.os.Bundle;
 import android.os.Environment;
@@ -13,7 +13,6 @@ import android.graphics.BitmapFactory.Options;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 
