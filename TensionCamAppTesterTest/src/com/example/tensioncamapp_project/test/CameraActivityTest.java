@@ -7,6 +7,7 @@ import android.test.TouchUtils;
 
 import com.example.tensioncamapp_project.CameraActivity;
 import com.example.tensioncamapp_project.FileHandler;
+import com.example.tensioncamapp_project.TensionCamera;
 
 public class CameraActivityTest extends ActivityInstrumentationTestCase2<CameraActivity> {
 
@@ -33,9 +34,9 @@ public class CameraActivityTest extends ActivityInstrumentationTestCase2<CameraA
 	
 	}	
 		
-	//Checks that the method getCameraInstance returns an object of the class Camera
+	/**Checks that the method getCameraInstance returns an object of the type Camera */
 	public void testGetCameraInstance() {
-        assertTrue(cam.getCameraInstance().getClass() == Camera.class);
+        assertTrue(TensionCamera.getCameraInstance().getClass() == Camera.class);
  
 	}
 	
