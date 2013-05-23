@@ -25,7 +25,7 @@ public class CameraFeatures {
 		}
 	}
 	
-	public void disactivateFlas(){
+	public void disactivateFlash(){
 		try{
 			//getting current parameters
 	        Camera.Parameters params = this.mCamera.getParameters(); 

@@ -62,7 +62,7 @@ public class CameraActivity extends Activity implements View.OnClickListener {
 					this.mFeature.activateFlash();
 					this.flashclicks ++;
 				}else {
-					
+					this.mFeature.disactivateFlash();
 					this.flashclicks --;
 				}
 		}
