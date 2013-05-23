@@ -4,26 +4,28 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+
 import android.content.Intent;
 import android.app.Activity;
 import android.hardware.Camera;
-import android.hardware.Camera.Parameters;
 import android.hardware.Camera.PictureCallback;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 
-public class CameraActivity extends Activity {
+public class CameraActivity extends Activity implements View.OnClickListener {
 	private ImageButton captureButton;
+	private Button flashButton;
 	private Camera mCamera;
     private CameraPreview mPreview;
+    private CameraFeatures mFeature;
     private PictureCallback mPicture;
     private static final int STD_DELAY = 1000;
     private static final int MEDIA_TYPE_IMAGE = 1;
 	protected static final String TAG = "CameraActivity";
-	private File mFile;
 	    
     /**Starts up the camera */
     @Override
@@ -37,18 +39,27 @@ public class CameraActivity extends Activity {
      *  and redirects the client to a preview of the captures image*/
     private void addListenerOnButton() {
 		this.captureButton = (ImageButton) findViewById(R.id.button_capture_symbol);
-		this.captureButton.setOnClickListener(new View.OnClickListener() {
+		this.flashButton = (Button) findViewById(R.id.flash_button);
+		
+		this.captureButton.setOnClickListener(this);
+		this.flashButton.setOnClickListener(this);
+    }
 			 
-			@Override
-			public void onClick(View capturebutton) {
+	@Override
+	public void onClick(View v) {
+		switch(v.getId()) {
+			case R.id.button_capture_symbol:
 				CameraActivity.this.mCamera.takePicture(null, null, CameraActivity.this.mPicture);
-				delay();
-				
+				delay();	
 				Intent viewPic = new Intent(CameraActivity.this, ViewPicActivity.class);
 				startActivity(viewPic);
-			}
-		});
+				break;
+			case R.id.flash_button:
+				this.mFeature.setFlash();
+		}
 	}
+		
+
     
 
 	/** A safe way to get an instance of the Camera object. Code collected from elsewhere */
@@ -56,12 +67,7 @@ public class CameraActivity extends Activity {
         Camera c = null;
         try {
         	// attempt to get a Camera instance
-            c = Camera.open(); 
-            //getting current parameters
-            Camera.Parameters params = c.getParameters(); 
-            //setting new parameters with flash
-            params.setFlashMode(Parameters.FLASH_MODE_TORCH);
-            c.setParameters(params); 
+            c = Camera.open();  
         }
         catch (Exception e){
            Log.e(TAG, "camera not available" + e.getMessage()); // (in use or does not exist)
@@ -99,13 +105,13 @@ public class CameraActivity extends Activity {
 
     /**Help method to release the camera */
 	private void releaseCamera(){
-		mPreview.getHolder().removeCallback(mPreview);
+		this.mPreview.getHolder().removeCallback(this.mPreview);
 		//Checks if there is a camera object active
 		if (this.mCamera != null){
 			//Releases the camera
 	        this.mCamera.release();
 	        //Restore the camera object to its initial state
-	        this.mCamera = null;
+	        this.mCamera= null;
 	    }
 	}
 	
@@ -122,6 +128,8 @@ public class CameraActivity extends Activity {
 		this.mPreview = new CameraPreview(this, this.mCamera);
 		FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
 		preview.addView(this.mPreview);
+		//Create Camera Features
+		this.mFeature = new CameraFeatures(this.mCamera);
 		// add the capture button
 		addListenerOnButton();
 		// In order to receive data in JPEG format
@@ -157,12 +165,7 @@ public class CameraActivity extends Activity {
 		
 		super.onResume();
 	}
-		 
-	//    @Override /**Resets when activity destroyed*/
-		/*protected void onDestroy() {
-			super.onDestroy();
-			releaseCamera();
-		}*/
+	
 
 
 }
