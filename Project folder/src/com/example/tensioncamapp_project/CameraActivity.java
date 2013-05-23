@@ -1,10 +1,6 @@
 package com.example.tensioncamapp_project;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
 import android.content.Intent;
 import android.app.Activity;
 import android.hardware.Camera;
@@ -68,7 +64,7 @@ public class CameraActivity extends Activity implements View.OnClickListener {
 				}
 		}
 	}
-		
+
 	
 	/**Generates a delay needed for application to save new pictures */
 	private static void delay(){

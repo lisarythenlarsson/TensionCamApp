@@ -22,7 +22,7 @@ public class ResultActivity extends Activity implements View.OnClickListener {
 		newPic = (Button) findViewById(R.id.new_picture_button);
 	
 		Result = (TextView) findViewById(R.id.text_result);
-		Result.setText("The result is: " + ViewPicActivity.get() + " pixels");
+		Result.setText("The result is: " + ViewPicActivity.get() + " blobs.");
 		addListenerOnButton();
 	}
 
