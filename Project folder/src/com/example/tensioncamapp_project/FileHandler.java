@@ -42,6 +42,7 @@ public class FileHandler {
 		    	return mediaFile;
 	}
     
+    /** Nämn att filnamnet är hårdkodat */
     public static String pathToString(){
     	String path;
     	File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(

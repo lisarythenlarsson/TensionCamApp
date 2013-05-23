@@ -34,13 +34,14 @@ public class FileHandlerTest extends AndroidTestCase {
 		
 		assertFalse(file.exists());
 	}
-	
+	/** Verify that ....  */
 	public void deleteFromExternalStorageTest2() throws IOException {
-        File file = new File(FileHandler.pathToString());
+		File file = new File(FileHandler.pathToString());
         if(file.exists()){
             file.delete();
         }
         
+        assertFalse(file.exists());
         FileHandler.deleteFromExternalStorage();
         assertFalse(file.exists());
 		
