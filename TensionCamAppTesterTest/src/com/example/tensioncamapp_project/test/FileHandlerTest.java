@@ -14,6 +14,7 @@ public class FileHandlerTest extends AndroidTestCase {
 	
 	private int mediaTypeImage = 1; //The int 1 represents an image file
 	private static CameraActivity cam;
+	private String txt;
 	
 	public void getOutputMediaFileTest(int mediaTypeImage){
 		final File file = FileHandler.getOutputMediaFile(this.mediaTypeImage);
@@ -22,8 +23,10 @@ public class FileHandlerTest extends AndroidTestCase {
 	
 	public void deleteFromExternalStorageTest1() throws IOException {
 		File file = null;
+		txt = FileHandler.pathToString();
+		txt.replace(".jpg", ".txt");
 		
-		file = new File(FileHandler.pathToString());
+		file = new File(txt);
 		FileWriter writer = new FileWriter(file);
 		writer.write(1);
 		
