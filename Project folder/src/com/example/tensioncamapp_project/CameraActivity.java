@@ -21,7 +21,7 @@ public class CameraActivity extends Activity implements View.OnClickListener {
 	private Button flashButton;
 	private Camera mCamera;
     private CameraPreview mPreview;
-    private CameraFeatures mFeature;
+    private TensionCamera mFeature;
     private PictureCallback mPicture;
     private static final int STD_DELAY = 1000;
     private static final int MEDIA_TYPE_IMAGE = 1;
@@ -68,23 +68,6 @@ public class CameraActivity extends Activity implements View.OnClickListener {
 		}
 	}
 		
-
-    
-
-	/** A safe way to get an instance of the Camera object. Code collected from elsewhere */
-   public static Camera getCameraInstance(){
-        Camera c = null;
-        try {
-        	// attempt to get a Camera instance
-            c = Camera.open();  
-        }
-        catch (Exception e){
-           Log.e(TAG, "camera not available" + e.getMessage()); // (in use or does not exist)
-        }
-        // returns null if camera is unavailable
-        System.out.println("printar c" + c);
-        return c; 
-    }
 	
 	/**Generates a delay needed for application to save new pictures */
 	private static void delay(){
@@ -131,14 +114,14 @@ public class CameraActivity extends Activity implements View.OnClickListener {
 		FileHandler.deleteFromExternalStorage();
 		if(this.mCamera == null){
 		// Create an instance of Camera.
-		this.mCamera = getCameraInstance();
+		this.mCamera = TensionCamera.getCameraInstance();
 		}
 		// Create our Preview view and set it as the content of our activity.
 		this.mPreview = new CameraPreview(this, this.mCamera);
 		FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
 		preview.addView(this.mPreview);
 		//Create Camera Features
-		this.mFeature = new CameraFeatures(this.mCamera);
+		this.mFeature = new TensionCamera(this.mCamera);
 		// add the capture button
 		addListenerOnButton();
 		// In order to receive data in JPEG format
