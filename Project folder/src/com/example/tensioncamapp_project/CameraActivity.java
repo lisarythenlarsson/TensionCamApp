@@ -50,6 +50,7 @@ public class CameraActivity extends Activity implements View.OnClickListener {
 			case R.id.button_capture_symbol:
 				//taking a picture and switching activity
 				CameraActivity.this.mCamera.takePicture(null, null, CameraActivity.this.mPicture);
+				this.captureButton.setEnabled(false);
 				delay();	
 				Intent viewPic = new Intent(CameraActivity.this, ViewPicActivity.class);
 				startActivity(viewPic);
