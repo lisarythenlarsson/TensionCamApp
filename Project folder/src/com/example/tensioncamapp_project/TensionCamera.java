@@ -13,7 +13,7 @@ public class TensionCamera {
 	}
 
 
-	/** A safe way to get an instance of the Camera object. Code collected from elsewhere */
+	/** A safe way to get an instance of the Camera object.*/
    public static Camera getCameraInstance(){
         Camera c = null;
         try {
@@ -28,7 +28,7 @@ public class TensionCamera {
         return c; 
     }
 	
-	/**evoking flash for camera*/
+	/**activating flash for camera*/
 	public void activateFlash(){
 		try{
 		//getting current parameters
