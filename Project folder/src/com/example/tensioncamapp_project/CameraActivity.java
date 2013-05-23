@@ -113,16 +113,14 @@ public class CameraActivity extends Activity implements View.OnClickListener {
 		// TODO Auto-generated method stub
 		// deleting image from external storage
 		FileHandler.deleteFromExternalStorage();
-		//creating an TensionCamera instance
-		this.mFeature = new TensionCamera(this.mCamera);
 		// Create an instance of Camera.
 		this.mCamera = TensionCamera.getCameraInstance();
 		// Create our Preview view and set it as the content of our activity.
 		this.mPreview = new CameraPreview(this, this.mCamera);
 		FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
 		preview.addView(this.mPreview);
-		//Create Camera Features
-		
+		//creating an TensionCamera instance to handle features
+		this.mFeature = new TensionCamera(this.mCamera);
 		// add the capture button
 		addListenerOnButton();
 		// In order to receive data in JPEG format
