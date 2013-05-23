@@ -1,16 +1,8 @@
 package com.example.tensioncamapp_project;
 
-import java.io.File;
-
-
 import android.os.Bundle;
-import android.os.Environment;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.BitmapFactory.Options;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -18,7 +10,6 @@ import android.widget.ImageView;
 
 public class ViewPicActivity extends Activity implements View.OnClickListener {
 
-	private String TAG = "ViewPicActivity";
 	private Button discard;
 	private Button analyze;
 	
@@ -26,7 +17,8 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_pic);
-		displayImage();
+		ImageView jpgView = (ImageView) findViewById(R.id.imageView);
+		Displayer.displayImage(jpgView);
 		addListenerOnButton();
 	}
 
@@ -40,11 +32,11 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 	
 	
 	private void addListenerOnButton() {
-		discard = (Button) findViewById(R.id.discard_button);
-		analyze = (Button) findViewById(R.id.analyze_button);
+		this.discard = (Button) findViewById(R.id.discard_button);
+		this.analyze = (Button) findViewById(R.id.analyze_button);
 		 
-		discard.setOnClickListener(this);
-		analyze.setOnClickListener(this);
+		this.discard.setOnClickListener(this);
+		this.analyze.setOnClickListener(this);
 	}
 		
 	/**Added switch-clauses to enable functionality for two buttons */	
@@ -62,31 +54,7 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 			break;			
 		}
 	}
-		
-
-
-	
-	/** Retrieves picture from external storage, decodes it to .bmp and displays it in layout */
-	private void displayImage(){
-		try{
-		File imageFile = new File(new File(Environment.getExternalStoragePublicDirectory(
-	    		Environment.DIRECTORY_PICTURES), "TensionCamApp")
-                .getPath() + File.separator + FileHandler.filename);
-			
-		ImageView jpgView = (ImageView)findViewById(R.id.imageView);
-		Bitmap bitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath(), resize());
-		jpgView.setImageBitmap(bitmap);
-		} catch (NullPointerException e){
-			Log.d(TAG, "No image to retrieve" + e.getMessage());
-		}
-	}
-	
-	private static Options resize(){
-		BitmapFactory.Options resample = new BitmapFactory.Options();
-		resample.inJustDecodeBounds = true;
-		resample.inSampleSize = 2;
-		resample.inJustDecodeBounds = false;
-		return resample;
-	}
+ 	
+ 	
 }
 
