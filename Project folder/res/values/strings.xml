@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">TensionnsionCamApp_project</string>
+    <string name="app_name">TensionCamApp</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
     <string name="take_picture">Take a picture</string>
+    <string name="analyze_button">Analyze</string>
+    <string name="title_activity_view_pic">ViewPicActivity</string>
+    <string name="flash_button">Flash</string>
 
 </resources>

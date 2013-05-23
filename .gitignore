@@ -27,11 +27,8 @@ proguard/
 *.ipr
 *.iws
 .idea/
-<<<<<<< Updated upstream
-*.DS_Store
-=======
 
 # OS-specific thumb files
 .DS_Store
 Thumbs.db
->>>>>>> Stashed changes
+

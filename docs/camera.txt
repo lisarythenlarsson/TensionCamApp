@@ -17,11 +17,12 @@ We choose not to investigate if the device has more than one camera, since the
 Camera.open()-command accesses the primary camera, which is desired.
 
 
-We have choosen to work with API-level 16 (4.1.2) as a minimim. We motivate that
+We have chosen to work with API-level 16 (4.1.2) as a minimim. We motivate that
 choice with a deal we have made with our project providor, agreeing on the
 Sony Xperia Z to be used as the running device. It runs 4.1.2 (or newer) and is
 waterproof and shockproof with a big screen.
 
-Nästa handledning: 24/4 14.00 i 3211
 
-Need to create a TestUnit for testing all our activities. 
+We have chosen to use an external storage, instead of the device internal storage, in order to be able to access the data from other devices. 
+
+Filename consists of a timestamp, might want to add an location in the future. Check commentary.
