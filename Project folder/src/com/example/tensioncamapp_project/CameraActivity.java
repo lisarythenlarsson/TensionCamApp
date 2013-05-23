@@ -55,7 +55,7 @@ public class CameraActivity extends Activity implements View.OnClickListener {
 				startActivity(viewPic);
 				break;
 			case R.id.flash_button:
-				//avoking flash
+				//evoking flash
 				this.mFeature.setFlash();
 		}
 	}
