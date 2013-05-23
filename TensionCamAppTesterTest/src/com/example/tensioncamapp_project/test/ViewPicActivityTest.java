@@ -32,11 +32,4 @@ public class ViewPicActivityTest extends
 			TouchUtils.clickView(this, cam.findViewById(com.example.tensioncamapp_project.R.id.discard_button));
 			assertTrue(cam.getCurrentFocus() == cam.findViewById(R.layout.activity_camera));
 	} 
-	
-	/**Checks that the analyze button generates a result */
-	//public void testAnalyzeButton() {
-	//	TouchUtils.clickView(this, cam.findViewById(com.example.tensioncamapp_project.R.id.analyze_button));
-	//	sleep(XXX);
-	//	getTextView(!isEmpty());
-	//}
 }

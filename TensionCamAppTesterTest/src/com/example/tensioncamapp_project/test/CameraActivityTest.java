@@ -29,7 +29,6 @@ public class CameraActivityTest extends ActivityInstrumentationTestCase2<CameraA
 		
 		FileHandler.deleteFromExternalStorage(); //wipes the directory
 		TouchUtils.clickView(this, cam.findViewById(com.example.tensioncamapp_project.R.id.button_capture_symbol)); //captures a picture
-		//cam.delay(); change visibility from private to protected in CameraActivity
 		assertTrue(!FileHandler.pathToString().isEmpty()); //checks that there is a file stores in the directory
 	
 	}	
