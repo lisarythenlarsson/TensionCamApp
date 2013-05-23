@@ -20,7 +20,7 @@ public class FileHandlerTest extends AndroidTestCase {
 		assertTrue(file.getClass() == File.class);
 	}
 	
-	public void deleteFromExternalStorageTest() throws IOException {
+	public void deleteFromExternalStorageTest1() throws IOException {
 		File file = null;
 		
 		file = new File(FileHandler.pathToString());
@@ -30,5 +30,16 @@ public class FileHandlerTest extends AndroidTestCase {
 		FileHandler.deleteFromExternalStorage();
 		
 		assertFalse(file.exists());
+	}
+	
+	public void deleteFromExternalStorageTest2() throws IOException {
+        File file = new File(FileHandler.pathToString());
+        if(file.exists()){
+            file.delete();
+        }
+        
+        FileHandler.deleteFromExternalStorage();
+        assertFalse(file.exists());
+		
 	}
 }
