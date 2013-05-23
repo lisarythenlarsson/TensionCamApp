@@ -12,21 +12,27 @@
         android:name="android.test.InstrumentationTestRunner"
         android:label="Test1"
         android:targetPackage="com.example.tensionnsioncamapp_project" />
-    /** asks for permission to acces camera hardware */
+   
+    /** asks for permission to access Internet */
+    <uses-permission android:name="android.permission.INTERNET" />
+    
+    /** asks for permission to access camera hardware */
     <uses-permission android:name="android.permission.CAMERA" />
-    /** asks for permission to write an external storage*/
+   
+    /** asks for permission to write an external storage*/
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    /** asks for permission to acces flash*/
+    
+    /** asks for permission to access flash*/
     <uses-permission
         android:name="android.permission.FLASHLIGHT"
         android:permissionGroup="android.permission-group.HARDWARE_CONTROLS"
         android:protectionLevel="normal" />
- 	/**checks if flash exists*/
+ 	
+    /**checks if flash exists*/
     <uses-feature android:name="android.hardware.flash" />
-    /**checks if camera hardware exists*/
+   
+    /**checks if camera hardware exists*/
     <uses-feature android:name="android.hardware.camera" />
-    /**checks if the autofocus feature exists*/
-    <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
         android:allowBackup="true"
@@ -37,7 +43,9 @@
 
         <activity
             android:name="com.example.tensioncamapp_project.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="landscape">
+            
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -54,14 +62,16 @@
         </activity>
         <activity
             android:name="com.example.tensioncamapp_project.ViewPicActivity"
-            android:label="@string/title_activity_view_pic" >
+            android:label="@string/title_activity_view_pic" 
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name="com.example.tensioncamapp_project.ResultActivity"
-            android:label="@string/title_activity_result" >
+            android:label="@string/title_activity_result"
+            android:screenOrientation="landscape" >
         </activity>
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET" />
+
 
 </manifest>

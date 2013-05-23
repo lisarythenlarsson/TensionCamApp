@@ -3,10 +3,11 @@
 
     <string name="app_name">TensionCamApp</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
     <string name="take_picture">Take a picture</string>
-    <string name="capture_picture">Capture</string>
+    <string name="analyze_button">Analyze</string>
     <string name="title_activity_view_pic">ViewPicActivity</string>
+    <string name="flash_button">Flash</string>
     <string name="title_activity_result">ResultActivity</string>
+
 
 </resources>

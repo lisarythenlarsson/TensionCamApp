@@ -1,18 +1,23 @@
 package com.example.tensioncamapp_project;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.BitmapFactory.Options;
 import android.os.Environment;
 import android.util.Log;
+import android.widget.ImageView;
 
 public class FileHandler {
 	private static final String TAG = "File"; 
 	protected static final String filename = "IMG"+ "1" + ".jpg";
 	private static final int MEDIA_TYPE_IMAGE = 1;
-	
-	public FileHandler(){
-		//TODO: write constructor
-	}
+		
+
 	
 	/** Create a File for saving an image and returning file name */
     public static File getOutputMediaFile(int mediaTypeImage) {
@@ -20,7 +25,7 @@ public class FileHandler {
 			Log.d(TAG,"Can't access the external storage");
 			return null;
 		}//creating a file for storage directory
-			File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
+				File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
 	    		Environment.DIRECTORY_PICTURES), "TensionCamApp");
 		    	
 			// Creating the storage directory if it does not exist
@@ -41,8 +46,9 @@ public class FileHandler {
 
 		    	return mediaFile;
 	}
-    
-    /** Nämn att filnamnet är hårdkodat */
+
+     /**Creating a name of file in the right directory. Nämn också att filnamnet är hårdkodat*/
+
     public static String pathToString(){
     	String path;
     	File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
@@ -51,10 +57,21 @@ public class FileHandler {
     	return path;
     }
 
-   
+    public static void writeToFile(byte[] data, File f){
+    	try {
+			// Writes the image to the disc
+			FileOutputStream fos = new FileOutputStream(f);
+			fos.write(data);
+			fos.close();
+		} catch (FileNotFoundException e) {
+			Log.d(TAG, "File not found: " + e.getMessage());
+		} catch (IOException e) {
+			Log.d(TAG, "Error accessing file: " + e.getMessage());
+		}
+    }
    
     /**checking if external storage is read and writable */
-	public static boolean isExternalStorageWritable() {
+	private static boolean isExternalStorageWritable() {
 	    String state = Environment.getExternalStorageState();
 	    if (Environment.MEDIA_MOUNTED.equals(state)) {
 	        return true;
@@ -64,8 +81,10 @@ public class FileHandler {
 
 	/**deleting file if it exists in directory*/
 	public static void deleteFromExternalStorage () {
+	    String mediaStorage = new String (pathToString());
 		try { // if file exists, it should be deleted
-	        File file = new File(pathToString());
+	        File file = new File(mediaStorage);
+
 	        if(file.exists())
 	            file.delete();
 	    }
@@ -74,4 +93,5 @@ public class FileHandler {
 	        Log.e("App", "Exception while deleting file " + e.getMessage());
 	    }
 	}
+	
 }

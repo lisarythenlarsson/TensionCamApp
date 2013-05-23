@@ -1,5 +1,6 @@
 package com.example.tensioncamapp_project;
 
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -12,12 +13,8 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.DefaultHttpClient;
-
-//import com.example.tensioncamapp_project.Send.SendTask;
-
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -28,14 +25,12 @@ import android.graphics.BitmapFactory.Options;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 public class ViewPicActivity extends Activity implements View.OnClickListener {
 
-	private String TAG = "ViewPicActivity";
 	private Button discard;
 	private Button analyze;
 	private ProgressBar progressBar;
@@ -46,7 +41,8 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_pic);
-		displayImage();
+		ImageView jpgView = (ImageView) findViewById(R.id.imageView);
+		Displayer.displayImage(jpgView);
 		addListenerOnButton();
 	}
 
@@ -58,11 +54,13 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 	}
 
 	private void addListenerOnButton() {
-		discard = (Button) findViewById(R.id.discard_button);
-		analyze = (Button) findViewById(R.id.analyze_button);
 
-		discard.setOnClickListener(this);
-		analyze.setOnClickListener(this);
+		this.discard = (Button) findViewById(R.id.discard_button);
+		this.analyze = (Button) findViewById(R.id.analyze_button);
+		 
+		this.discard.setOnClickListener(this);
+		this.analyze.setOnClickListener(this);
+
 	}
 
 	/** Added switch-clauses to enable functionality for two buttons */
@@ -75,8 +73,8 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 			startActivity(openCamActivity);
 			break;
 		case R.id.analyze_button:
-			progressBar = (ProgressBar) findViewById(R.id.progressBar);
-			progressBar.setVisibility(0);
+			this.progressBar = (ProgressBar) findViewById(R.id.progressBar);
+			this.progressBar.setVisibility(0);
 			System.out.println("test1");
 			String path = FileHandler.pathToString();
 			System.out.println("test2");
@@ -92,30 +90,6 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 		}
 	}
 
-	/**
-	 * Retrieves picture from external storage, decodes it to .bmp and displays
-	 * it in layout
-	 */
-	private void displayImage() {
-		try {
-			File imageFile = new File(FileHandler.pathToString());
-
-			ImageView jpgView = (ImageView) findViewById(R.id.imageView);
-			Bitmap bitmap = BitmapFactory.decodeFile(
-					imageFile.getAbsolutePath(), resize());
-			jpgView.setImageBitmap(bitmap);
-		} catch (NullPointerException e) {
-			Log.d(TAG, "No image to retrieve" + e.getMessage());
-		}
-	}
-
-	private static Options resize() {
-		BitmapFactory.Options resample = new BitmapFactory.Options();
-		resample.inJustDecodeBounds = true;
-		resample.inSampleSize = 2;
-		resample.inJustDecodeBounds = false;
-		return resample;
-	}
 
 	private class SendTask extends AsyncTask<String, String, String> {
 		private String answer;
@@ -175,9 +149,9 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 
 		@Override
 		protected void onPostExecute(String result) {
-			answer = result;
-			System.out.println(answer);
-			set(answer);
+			this.answer = result;
+			System.out.println(this.answer);
+			set(this.answer);
 			Intent openResultActivity = new Intent(ViewPicActivity.this, ResultActivity.class);
 			startActivity(openResultActivity);
 		}

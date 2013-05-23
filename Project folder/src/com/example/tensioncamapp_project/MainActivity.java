@@ -1,14 +1,10 @@
 package com.example.tensioncamapp_project;
 
 
-import android.hardware.Camera;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
-import android.view.View;
-import android.widget.Button;
-import android.view.View.OnClickListener;
 
 public class MainActivity extends Activity {
 
