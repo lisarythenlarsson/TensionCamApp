@@ -31,8 +31,6 @@
     /**checks if camera hardware exists*/
     <uses-feature android:name="android.hardware.camera" />
  	
-    /**checks if the autofocus feature exists*/
-    <uses-feature android:name="android.hardware.camera.autofocus" />
 
     
     <application
