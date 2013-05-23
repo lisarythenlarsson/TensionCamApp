@@ -57,7 +57,7 @@ public class FileHandler {
    
    
     /**checking if external storage is read and writable */
-	public static boolean isExternalStorageWritable() {
+	private static boolean isExternalStorageWritable() {
 	    String state = Environment.getExternalStorageState();
 	    if (Environment.MEDIA_MOUNTED.equals(state)) {
 	        return true;
@@ -66,7 +66,7 @@ public class FileHandler {
 	}
 
 	/**deleting file if it exists in directory*/
-	public static void deleteFromExternalStorage () {
+	private void deleteFromExternalStorage () {
 	    File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
 	    		Environment.DIRECTORY_PICTURES), "TensionCamApp");
 		try { // if file exists, it should be deleted
