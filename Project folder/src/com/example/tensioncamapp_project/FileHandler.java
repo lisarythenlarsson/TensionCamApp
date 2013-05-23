@@ -5,8 +5,12 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.BitmapFactory.Options;
 import android.os.Environment;
 import android.util.Log;
+import android.widget.ImageView;
 
 public class FileHandler {
 	private static final String TAG = "File"; 
@@ -45,12 +49,9 @@ public class FileHandler {
      /**Creating a name of file in the right directory*/
     public static String pathToString(){
     	String path;
-    	
     	File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
 	    		Environment.DIRECTORY_PICTURES), "TensionCamApp");
-    	
     	path = mediaStorageDir.getPath() + File.separator + filename;
-    	
     	return path;
     }
 
@@ -81,6 +82,7 @@ public class FileHandler {
 	    String mediaStorage = new String (pathToString());
 		try { // if file exists, it should be deleted
 	        File file = new File(mediaStorage);
+
 	        if(file.exists())
 	            file.delete();
 	    }
@@ -89,4 +91,5 @@ public class FileHandler {
 	        Log.e("App", "Exception while deleting file " + e.getMessage());
 	    }
 	}
+	
 }

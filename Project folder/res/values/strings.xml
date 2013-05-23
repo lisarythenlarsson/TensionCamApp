@@ -7,5 +7,7 @@
     <string name="analyze_button">Analyze</string>
     <string name="title_activity_view_pic">ViewPicActivity</string>
     <string name="flash_button">Flash</string>
+    <string name="title_activity_result">ResultActivity</string>
+
 
 </resources>
