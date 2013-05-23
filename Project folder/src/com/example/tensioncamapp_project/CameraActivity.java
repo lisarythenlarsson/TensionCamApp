@@ -35,8 +35,7 @@ public class CameraActivity extends Activity implements View.OnClickListener {
        }   
     
 
-	/**Connects the capture button on the view to a listener
-     *  and redirects the client to a preview of the captures image*/
+	/**Connects the capture button on the view to a listener*/
     private void addListenerOnButton() {
 		this.captureButton = (ImageButton) findViewById(R.id.button_capture_symbol);
 		this.flashButton = (Button) findViewById(R.id.flash_button);
@@ -45,16 +44,18 @@ public class CameraActivity extends Activity implements View.OnClickListener {
 		this.flashButton.setOnClickListener(this);
     }
 			 
-	@Override
+	@Override /** performing actions depending on pressed button*/
 	public void onClick(View v) {
 		switch(v.getId()) {
 			case R.id.button_capture_symbol:
+				//taking a picture and switching activity
 				CameraActivity.this.mCamera.takePicture(null, null, CameraActivity.this.mPicture);
 				delay();	
 				Intent viewPic = new Intent(CameraActivity.this, ViewPicActivity.class);
 				startActivity(viewPic);
 				break;
 			case R.id.flash_button:
+				//avoking flash
 				this.mFeature.setFlash();
 		}
 	}
@@ -80,7 +81,7 @@ public class CameraActivity extends Activity implements View.OnClickListener {
 	/**Generates a delay needed for application to save new pictures */
 	private static void delay(){
 		try {
-			//Makes the program inactive for a specific amout of time
+			//Makes the program inactive for a specific amount of time
 			Thread.sleep(STD_DELAY);
 		} catch (Exception e) {
 			e.getStackTrace();
