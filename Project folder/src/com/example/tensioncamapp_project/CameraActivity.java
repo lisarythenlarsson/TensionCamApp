@@ -26,6 +26,7 @@ public class CameraActivity extends Activity implements View.OnClickListener {
     private static final int STD_DELAY = 1000;
     private static final int MEDIA_TYPE_IMAGE = 1;
 	protected static final String TAG = "CameraActivity";
+	private int flashclicks = 0;
 	    
     /**Starts up the camera */
     @Override
@@ -56,8 +57,14 @@ public class CameraActivity extends Activity implements View.OnClickListener {
 				startActivity(viewPic);
 				break;
 			case R.id.flash_button:
-				//evoking flash
-				this.mFeature.setFlash();
+				//activating flash
+				if(this.flashclicks == 0){
+					this.mFeature.activateFlash();
+					this.flashclicks ++;
+				}else {
+					
+					this.flashclicks --;
+				}
 		}
 	}
 		
