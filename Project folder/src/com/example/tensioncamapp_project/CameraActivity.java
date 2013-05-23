@@ -45,7 +45,7 @@ public class CameraActivity extends Activity implements View.OnClickListener {
 		this.flashButton.setOnClickListener(this);
     }
 			 
-	@Override /** performing actions depending on pressed button*/
+	@Override /** performing actions depending on which button being pressed*/
 	public void onClick(View v) {
 		switch(v.getId()) {
 			case R.id.button_capture_symbol:
@@ -61,6 +61,7 @@ public class CameraActivity extends Activity implements View.OnClickListener {
 				if(this.flashclicks == 0){
 					this.mFeature.activateFlash();
 					this.flashclicks ++;
+				//disactivating flash
 				}else {
 					this.mFeature.disactivateFlash();
 					this.flashclicks --;
@@ -95,7 +96,7 @@ public class CameraActivity extends Activity implements View.OnClickListener {
 	}
 
 
-    /**Help method to release the camera */
+    /**Releasing the camera so that other applications can use the camera*/
 	private void releaseCamera(){
 		this.mPreview.getHolder().removeCallback(this.mPreview);
 		//Checks if there is a camera object active
@@ -112,16 +113,16 @@ public class CameraActivity extends Activity implements View.OnClickListener {
 		// TODO Auto-generated method stub
 		// deleting image from external storage
 		FileHandler.deleteFromExternalStorage();
-		if(this.mCamera == null){
+		//creating an TensionCamera instance
+		this.mFeature = new TensionCamera(this.mCamera);
 		// Create an instance of Camera.
 		this.mCamera = TensionCamera.getCameraInstance();
-		}
 		// Create our Preview view and set it as the content of our activity.
 		this.mPreview = new CameraPreview(this, this.mCamera);
 		FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
 		preview.addView(this.mPreview);
 		//Create Camera Features
-		this.mFeature = new TensionCamera(this.mCamera);
+		
 		// add the capture button
 		addListenerOnButton();
 		// In order to receive data in JPEG format
@@ -133,7 +134,7 @@ public class CameraActivity extends Activity implements View.OnClickListener {
 			 */
 			@Override
 			public void onPictureTaken(byte[] data, Camera mCamera) {
-
+				//creating an file to write the image to
 				File pictureFile = FileHandler.getOutputMediaFile(MEDIA_TYPE_IMAGE);
 
 				if (pictureFile == null) {
@@ -141,8 +142,8 @@ public class CameraActivity extends Activity implements View.OnClickListener {
 							"Error creating media file, check storage permissions");
 					return;
 				}
-
-				try {
+				FileHandler.writeToFile(data, pictureFile);
+				/**try {
 					// Writes the image to the disc
 					FileOutputStream fos = new FileOutputStream(pictureFile);
 					fos.write(data);
@@ -151,7 +152,7 @@ public class CameraActivity extends Activity implements View.OnClickListener {
 					Log.d(TAG, "File not found: " + e.getMessage());
 				} catch (IOException e) {
 					Log.d(TAG, "Error accessing file: " + e.getMessage());
-				}
+				}*/
 			}
 		};
 		

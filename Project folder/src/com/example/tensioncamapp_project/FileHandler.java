@@ -1,6 +1,9 @@
 package com.example.tensioncamapp_project;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import android.os.Environment;
 import android.util.Log;
@@ -51,7 +54,18 @@ public class FileHandler {
     	return path;
     }
 
-   
+    public static void writeToFile(byte[] data, File f){
+    	try {
+			// Writes the image to the disc
+			FileOutputStream fos = new FileOutputStream(f);
+			fos.write(data);
+			fos.close();
+		} catch (FileNotFoundException e) {
+			Log.d(TAG, "File not found: " + e.getMessage());
+		} catch (IOException e) {
+			Log.d(TAG, "Error accessing file: " + e.getMessage());
+		}
+    }
    
     /**checking if external storage is read and writable */
 	private static boolean isExternalStorageWritable() {
