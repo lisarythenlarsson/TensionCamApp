@@ -45,6 +45,8 @@ public class CameraActivity extends Activity implements View.OnClickListener {
 		
 		this.captureButton.setOnClickListener(this);
 		this.flashButton.setOnClickListener(this);
+		
+		this.captureButton.setEnabled(true);
     }
 			 
 	@Override /** performing actions depending on which button being pressed*/
@@ -112,7 +114,6 @@ public class CameraActivity extends Activity implements View.OnClickListener {
 	
 	/**Activates the camera and makes it appear on the screen */
 		protected void onResume() {
-		// TODO Auto-generated method stub
 		// deleting image from external storage
 		FileHandler.deleteFromExternalStorage();
 		// Create an instance of Camera.
@@ -143,16 +144,6 @@ public class CameraActivity extends Activity implements View.OnClickListener {
 					return;
 				}
 				FileHandler.writeToFile(data, pictureFile);
-				/**try {
-					// Writes the image to the disc
-					FileOutputStream fos = new FileOutputStream(pictureFile);
-					fos.write(data);
-					fos.close();
-				} catch (FileNotFoundException e) {
-					Log.d(TAG, "File not found: " + e.getMessage());
-				} catch (IOException e) {
-					Log.d(TAG, "Error accessing file: " + e.getMessage());
-				}*/
 			}
 		};
 		

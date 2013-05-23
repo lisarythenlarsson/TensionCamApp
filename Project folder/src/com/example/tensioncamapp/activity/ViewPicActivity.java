@@ -59,6 +59,7 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 		 
 		this.discard.setOnClickListener(this);
 		this.analyze.setOnClickListener(this);
+		
 
 	}
 
@@ -67,11 +68,13 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.discard_button:
+			this.discard.setEnabled(false);
 			Intent openCamActivity = new Intent(ViewPicActivity.this,
 					CameraActivity.class);
 			startActivity(openCamActivity);
 			break;
 		case R.id.analyze_button:
+			this.analyze.setEnabled(false);
 			this.progressBar = (ProgressBar) findViewById(R.id.progressBar);
 			this.progressBar.setVisibility(0);
 			System.out.println("test1");
@@ -163,6 +166,13 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 	
 	public static String get(){
 		return result;
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		this.discard.setEnabled(true);
+		this.analyze.setEnabled(true);
 	}
 	
 
