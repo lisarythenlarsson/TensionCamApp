@@ -15,7 +15,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="@string/action_settings"
-        android:textSize="32dp" />
+        android:textSize="32sp" />
 
     <Button
         android:id="@+id/new_picture_button"
@@ -25,7 +25,7 @@
         android:layout_centerHorizontal="true"
         android:background="@drawable/button_discard"
         android:drawableLeft="@drawable/camera_symbol"
-        android:text="Take a New Picture"
+        android:text="@string/take_picture"
         android:textSize="20sp" />
 
 </RelativeLayout>
