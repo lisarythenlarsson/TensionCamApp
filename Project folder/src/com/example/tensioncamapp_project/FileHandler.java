@@ -64,10 +64,9 @@ public class FileHandler {
 
 	/**deleting file if it exists in directory*/
 	public static void deleteFromExternalStorage () {
-	    File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-	    		Environment.DIRECTORY_PICTURES), "TensionCamApp");
+	    String mediaStorage = new String (pathToString());
 		try { // if file exists, it should be deleted
-	        File file = new File(mediaStorageDir, filename);
+	        File file = new File(mediaStorage);
 	        if(file.exists())
 	            file.delete();
 	    }
