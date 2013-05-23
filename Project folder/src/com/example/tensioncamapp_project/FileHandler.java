@@ -9,19 +9,16 @@ public class FileHandler {
 	private static final String TAG = "File"; 
 	protected static final String filename = "IMG"+ "1" + ".jpg";
 	private static final int MEDIA_TYPE_IMAGE = 1;
-		private File mediaStorageDir;
-	
-	public FileHandler(File f){
-		this.mediaStorageDir = f;
-	}
+		
+
 	
 	/** Create a File for saving an image and returning file name */
-    private File getOutputMediaFile(int mediaTypeImage) {
+    public static File getOutputMediaFile(int mediaTypeImage) {
 		if (!isExternalStorageWritable()){ //checking if the external storage is accessible
 			Log.d(TAG,"Can't access the external storage");
 			return null;
 		}//creating a file for storage directory
-				mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
+				File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
 	    		Environment.DIRECTORY_PICTURES), "TensionCamApp");
 		    	
 			// Creating the storage directory if it does not exist
@@ -42,7 +39,6 @@ public class FileHandler {
 
 		    	return mediaFile;
 	}
-
      /**Creating a name of file in the right directory*/
     public static String pathToString(){
     	String path;
@@ -67,7 +63,7 @@ public class FileHandler {
 	}
 
 	/**deleting file if it exists in directory*/
-	private void deleteFromExternalStorage () {
+	public static void deleteFromExternalStorage () {
 	    File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
 	    		Environment.DIRECTORY_PICTURES), "TensionCamApp");
 		try { // if file exists, it should be deleted

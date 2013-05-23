@@ -23,6 +23,7 @@ public class CameraActivity extends Activity {
     private static final int STD_DELAY = 1000;
     private static final int MEDIA_TYPE_IMAGE = 1;
 	protected static final String TAG = "CameraActivity";
+	private File mFile;
 	    
     /**Starts up the camera */
     @Override
@@ -133,8 +134,7 @@ public class CameraActivity extends Activity {
 			@Override
 			public void onPictureTaken(byte[] data, Camera mCamera) {
 
-				File pictureFile = FileHandler
-						.getOutputMediaFile(MEDIA_TYPE_IMAGE);
+				File pictureFile = FileHandler.getOutputMediaFile(MEDIA_TYPE_IMAGE);
 
 				if (pictureFile == null) {
 					Log.d(TAG,
