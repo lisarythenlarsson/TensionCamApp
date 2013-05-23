@@ -45,7 +45,8 @@
 
         <activity
             android:name="com.example.tensioncamapp_project.MainActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -62,7 +63,8 @@
         </activity>
         <activity
             android:name="com.example.tensioncamapp_project.ViewPicActivity"
-            android:label="@string/title_activity_view_pic" >
+            android:label="@string/title_activity_view_pic" 
+            android:screenOrientation="landscape" >
         </activity>
     </application>
 

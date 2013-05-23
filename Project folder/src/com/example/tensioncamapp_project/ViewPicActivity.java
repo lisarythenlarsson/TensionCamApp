@@ -2,6 +2,7 @@ package com.example.tensioncamapp_project;
 
 import java.io.File;
 
+
 import android.os.Bundle;
 import android.os.Environment;
 import android.app.Activity;
@@ -12,7 +13,6 @@ import android.graphics.BitmapFactory.Options;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -56,6 +56,7 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 				startActivity(openCamActivity);
 				break;
 			case R.id.analyze_button:
+				
 				Intent opentestActivity = new Intent(ViewPicActivity.this, MainActivity.class);
 				startActivity(opentestActivity);
 			break;			
@@ -79,7 +80,7 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 			Log.d(TAG, "No image to retrieve" + e.getMessage());
 		}
 	}
-
+	
 	private static Options resize(){
 		BitmapFactory.Options resample = new BitmapFactory.Options();
 		resample.inJustDecodeBounds = true;

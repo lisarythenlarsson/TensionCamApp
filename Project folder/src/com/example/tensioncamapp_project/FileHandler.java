@@ -42,6 +42,7 @@ public class FileHandler {
 
 		    	return mediaFile;
 	}
+
      /**Creating a name of file in the right directory*/
     public static String pathToString(){
     	String path;
