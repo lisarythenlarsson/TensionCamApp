@@ -15,6 +15,8 @@ import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import com.example.tensioncamapp.activity.R;
+import com.example.tensioncamapp.utils.Displayer;
+import com.example.tensioncamapp.utils.FileHandler;
 
 import android.os.AsyncTask;
 import android.os.Bundle;

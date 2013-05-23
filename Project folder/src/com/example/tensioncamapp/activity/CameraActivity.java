@@ -3,6 +3,9 @@ package com.example.tensioncamapp.activity;
 import java.io.File;
 
 import com.example.tensioncamapp.activity.R;
+import com.example.tensioncamapp.ctr.TensionCamera;
+import com.example.tensioncamapp.utils.FileHandler;
+import com.example.tensioncamapp.views.CameraPreview;
 
 import android.content.Intent;
 import android.app.Activity;
