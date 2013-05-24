@@ -1,11 +1,10 @@
-package com.example.tensioncamapp_project;
+package com.example.tensioncamapp.activity;
 
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -13,16 +12,15 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.DefaultHttpClient;
+
+import com.example.tensioncamapp.activity.R;
+import com.example.tensioncamapp.utils.Displayer;
+import com.example.tensioncamapp.utils.FileHandler;
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.BitmapFactory.Options;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -60,6 +58,7 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 		 
 		this.discard.setOnClickListener(this);
 		this.analyze.setOnClickListener(this);
+		
 
 	}
 
@@ -68,28 +67,24 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.discard_button:
+			this.discard.setEnabled(false);
 			Intent openCamActivity = new Intent(ViewPicActivity.this,
 					CameraActivity.class);
 			startActivity(openCamActivity);
 			break;
 		case R.id.analyze_button:
+			this.analyze.setEnabled(false);
 			this.progressBar = (ProgressBar) findViewById(R.id.progressBar);
 			this.progressBar.setVisibility(0);
-			System.out.println("test1");
 			String path = FileHandler.pathToString();
-			System.out.println("test2");
 			try {
 				new SendTask().execute(path);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
-
 			break;
 		}
 	}
-
 
 	private class SendTask extends AsyncTask<String, String, String> {
 		private String answer;
@@ -98,32 +93,22 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 		protected String doInBackground(String... params) {
 				
 			String filePath = params[0];
-			String responseAnswer = "3";
+			String responseAnswer = "Could not connect to server";
 
-			System.out.println("test3");
 
 			HttpClient httpclient = new DefaultHttpClient();
 			try {
 				HttpPost httppost = new HttpPost("http://192.168.43.79:8080/Analyse/upload"); 
-				System.out.println("test4");
 				FileBody pic = new FileBody(new File(filePath)); 
-				System.out.println("test5");
 				MultipartEntity requestEntity = new MultipartEntity(); 
 				requestEntity.addPart("file", pic);
 
 				httppost.setEntity(requestEntity);
-				System.out.println("executing request "
-						+ httppost.getRequestLine());
+				System.out.println("executing request " + httppost.getRequestLine());
 				HttpResponse response = httpclient.execute(httppost);
-				HttpEntity responseEntity = response.getEntity();
 
-				System.out.println("----------------------------------------");
+				System.out.println("-------------------------------------------------------");
 				System.out.println(response.getStatusLine());
-				/*
-				 * if (responseEntity != null) {
-				 * System.out.println("Response content length: " +
-				 * responseEntity.getContentLength()); }
-				 */
 
 				ByteArrayOutputStream outstream = new ByteArrayOutputStream();
 				response.getEntity().writeTo(outstream);
@@ -133,10 +118,8 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 				System.out.println(responseAnswer);
 
 			} catch (ClientProtocolException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} finally {
 				try {
@@ -150,7 +133,6 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 		@Override
 		protected void onPostExecute(String result) {
 			this.answer = result;
-			System.out.println(this.answer);
 			set(this.answer);
 			Intent openResultActivity = new Intent(ViewPicActivity.this, ResultActivity.class);
 			startActivity(openResultActivity);
@@ -164,6 +146,13 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 	
 	public static String get(){
 		return result;
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		this.discard.setEnabled(true);
+		this.analyze.setEnabled(true);
 	}
 	
 

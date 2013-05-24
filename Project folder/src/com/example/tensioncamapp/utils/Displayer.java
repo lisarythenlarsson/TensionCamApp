@@ -1,6 +1,7 @@
-package com.example.tensioncamapp_project;
+package com.example.tensioncamapp.utils;
 
 import java.io.File;
+
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

@@ -1,16 +1,12 @@
-package com.example.tensioncamapp_project;
+package com.example.tensioncamapp.utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.BitmapFactory.Options;
 import android.os.Environment;
 import android.util.Log;
-import android.widget.ImageView;
 
 public class FileHandler {
 	private static final String TAG = "File"; 

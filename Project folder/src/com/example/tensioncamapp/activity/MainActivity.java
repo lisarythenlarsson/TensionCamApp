@@ -1,5 +1,7 @@
-package com.example.tensioncamapp_project;
+package com.example.tensioncamapp.activity;
 
+
+import com.example.tensioncamapp.activity.R;
 
 import android.os.Bundle;
 import android.app.Activity;

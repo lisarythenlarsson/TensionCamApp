@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.tensioncamapp_project"
+    package="com.example.tensioncamapp.activity"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -38,11 +38,11 @@
         android:allowBackup="true"
         android:icon="@drawable/logo_launcher"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.Black" >
+        android:theme="@android:style/Theme.Black.NoTitleBar" >
         <uses-library android:name="android.test.runner" />
 
         <activity
-            android:name="com.example.tensioncamapp_project.MainActivity"
+            android:name="com.example.tensioncamapp.activity.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="landscape">
             
@@ -53,7 +53,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.tensioncamapp_project.CameraActivity"
+            android:name="com.example.tensioncamapp.activity.CameraActivity"
             android:label="@string/app_name"
             android:screenOrientation="landscape" >
             <intent-filter>
@@ -61,12 +61,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.tensioncamapp_project.ViewPicActivity"
+            android:name="com.example.tensioncamapp.activity.ViewPicActivity"
             android:label="@string/title_activity_view_pic" 
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name="com.example.tensioncamapp_project.ResultActivity"
+            android:name="com.example.tensioncamapp.activity.ResultActivity"
             android:label="@string/title_activity_result"
             android:screenOrientation="landscape" >
         </activity>
