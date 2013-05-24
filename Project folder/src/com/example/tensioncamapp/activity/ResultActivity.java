@@ -23,7 +23,7 @@ public class ResultActivity extends Activity implements View.OnClickListener {
 		this.newPic = (Button) findViewById(R.id.new_picture_button);
 	
 		this.Result = (TextView) findViewById(R.id.text_result);
-		this.Result.setText("The result is: " + ViewPicActivity.get() + " blobs.");
+		this.Result.setText("The result is: " + ViewPicActivity.get());
 		addListenerOnButton();
 	}
 
@@ -50,9 +50,5 @@ public class ResultActivity extends Activity implements View.OnClickListener {
 	protected void onResume() {
 		super.onResume();
 		this.newPic.setEnabled(true);
-		
 	}
-	
-	
-
 }
