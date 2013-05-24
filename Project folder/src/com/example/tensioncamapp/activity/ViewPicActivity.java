@@ -5,7 +5,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -77,21 +76,15 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 			this.analyze.setEnabled(false);
 			this.progressBar = (ProgressBar) findViewById(R.id.progressBar);
 			this.progressBar.setVisibility(0);
-			System.out.println("test1");
 			String path = FileHandler.pathToString();
-			System.out.println("test2");
 			try {
 				new SendTask().execute(path);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
-
 			break;
 		}
 	}
-
 
 	private class SendTask extends AsyncTask<String, String, String> {
 		private String answer;
@@ -100,32 +93,22 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 		protected String doInBackground(String... params) {
 				
 			String filePath = params[0];
-			String responseAnswer = "3";
+			String responseAnswer = "Could not connect to server";
 
-			System.out.println("test3");
 
 			HttpClient httpclient = new DefaultHttpClient();
 			try {
 				HttpPost httppost = new HttpPost("http://192.168.43.79:8080/Analyse/upload"); 
-				System.out.println("test4");
 				FileBody pic = new FileBody(new File(filePath)); 
-				System.out.println("test5");
 				MultipartEntity requestEntity = new MultipartEntity(); 
 				requestEntity.addPart("file", pic);
 
 				httppost.setEntity(requestEntity);
-				System.out.println("executing request "
-						+ httppost.getRequestLine());
+				System.out.println("executing request " + httppost.getRequestLine());
 				HttpResponse response = httpclient.execute(httppost);
-				HttpEntity responseEntity = response.getEntity();
 
-				System.out.println("----------------------------------------");
+				System.out.println("-------------------------------------------------------");
 				System.out.println(response.getStatusLine());
-				/*
-				 * if (responseEntity != null) {
-				 * System.out.println("Response content length: " +
-				 * responseEntity.getContentLength()); }
-				 */
 
 				ByteArrayOutputStream outstream = new ByteArrayOutputStream();
 				response.getEntity().writeTo(outstream);
@@ -135,10 +118,8 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 				System.out.println(responseAnswer);
 
 			} catch (ClientProtocolException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} finally {
 				try {
@@ -152,7 +133,6 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 		@Override
 		protected void onPostExecute(String result) {
 			this.answer = result;
-			System.out.println(this.answer);
 			set(this.answer);
 			Intent openResultActivity = new Intent(ViewPicActivity.this, ResultActivity.class);
 			startActivity(openResultActivity);
