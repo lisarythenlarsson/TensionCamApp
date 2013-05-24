@@ -42,7 +42,9 @@ public class FileHandler {
 
 		    	return mediaFile;
 	}
-     /**Creating a name of file in the right directory*/
+
+     /**Creating a name of file in the right directory. Nämn också att filnamnet är hårdkodat*/
+
     public static String pathToString(){
     	String path;
     	File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
