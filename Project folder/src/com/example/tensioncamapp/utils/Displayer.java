@@ -1,5 +1,11 @@
 package com.example.tensioncamapp.utils;
 
+/**
+ * @author Lisa Rythén Larsson
+ * @copyright Lisa Rythén Larsson, Fredrik Johansson, Max Dubois, Martin Falk Danauskis
+ *  
+ *  */
+
 import java.io.File;
 
 
@@ -12,16 +18,17 @@ import android.widget.ImageView;
 public class Displayer {
 	private static final String TAG = "Displayer";
 	private static BitmapFactory.Options resample = new BitmapFactory.Options();
-
-	/** Retrieves picture from external storage, decodes it to .bmp and displays it in layout */
+	private static Bitmap bitmap;
+	
+	/** Retrieves picture from external storage, decodes it to .bmp */
 	public static void displayImage(ImageView jpgView){
 		try{
 		File imageFile = new File(FileHandler.pathToString());
-		Bitmap bitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath(), resize());
-		jpgView.setImageBitmap(bitmap);
+		bitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath(), resize());
 		} catch (NullPointerException e){
 			Log.d(TAG, "No image to retrieve" + e.getMessage());
 		}
+		jpgView.setImageBitmap(bitmap);
 	}
 	/** Changes the size of the image to fit the device*/
 	private static Options resize(){

@@ -1,5 +1,11 @@
 package com.example.tensioncamapp.views;
 
+/** 
+ * @author Lisa Rythén Larsson, Fredrik Johansson
+ * @copyright Lisa Rythén Larsson, Fredrik Johansson, Max Dubois, Martin Falk Danauskis
+ * @param responeanswer: result from the analyze 
+ *  */
+
 import java.io.IOException;
 
 import android.content.Context;
@@ -13,12 +19,9 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
     private static final String TAG = "PreviewAactivity";
 	private SurfaceHolder mHolder;
     private Camera mCamera;
-    private Context mContext;
-
-  
-	public CameraPreview(Context context, Camera camera) {
+    
+    public CameraPreview(Context context, Camera camera) {
         super(context);
-        this.mContext = context;
         this.mCamera = camera;
 
         // Install a SurfaceHolder.Callback so we get notified when the
@@ -39,11 +42,11 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
     }
 
     public void surfaceDestroyed(SurfaceHolder holder) {
-      //add things here
+      //not uses
     }
 
     public void surfaceChanged(SurfaceHolder holder, int format, int w, int h) {
-    	//
+    	//not used
     }
 
     
