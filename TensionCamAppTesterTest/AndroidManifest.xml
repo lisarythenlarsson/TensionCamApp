@@ -8,7 +8,7 @@
 
     <instrumentation
         android:name="android.test.InstrumentationTestRunner"
-        android:targetPackage="com.example.tensioncamapp_project" />
+        android:targetPackage="com.example.tensioncamapp_project.test" />
 
     <application
         android:icon="@drawable/ic_launcher"
