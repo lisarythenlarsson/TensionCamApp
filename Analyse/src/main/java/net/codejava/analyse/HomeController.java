@@ -26,7 +26,7 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	/**
-	 * Simply selects the home view to render by returning its name.
+	 * Simply selects the home view to render by returning its name. Used to check that the server is up and running.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
@@ -41,23 +41,28 @@ public class HomeController {
 		
 		return "home";
 	}
-	
+	/**
+	 * Controller method which respondes to a POST requst. It receives a MultipartFile, which in this case is a picture.
+	 * The controller writes the MultipartFile as an image to the disk. Afterwards it is executed with the analyse program.
+	 * After the analysis is performed the result is sent back to the client.
+	 * @throws InterruptedException 
+	 */
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	@ResponseBody
-	//A handler that takes in one parameter, the file
-	public String handleFormUpload(@RequestParam("file") MultipartFile file) throws IOException {
-		ReadWrite w = new ReadWrite();
-		w.writer("Nu kör vi!");
-		//If there is a file
+	public String handleFormUpload(@RequestParam("file") MultipartFile file) throws IOException, InterruptedException {
+		Read r = new Read();
 		if (!file.isEmpty()) {
 			byte[] bytes = file.getBytes();//Put the bytes into a byte array
-			FileOutputStream fos = new FileOutputStream("C:\\Users\\Martin\\Desktop\\image.bmp");//A FileOutputStream with the path where the picture should be
+			FileOutputStream fos = new FileOutputStream("C:\\Users\\Martin\\Desktop\\IMG1.bmp");//A FileOutputStream with the path where the picture should be
 			try {
 				fos.write(bytes);//Writes the bytes to a file, in this case "creating" the picture as a .bmp
 			} finally {
-				fos.close();//Closes the FileOutPutStream
+				fos.close();
+				new CommandExecution("C:\\Users\\Martin\\SoftwareEng\\Analyse.bat");
 			}
-			return "Hej hej test test";//Returns the answer
+			Thread.sleep(3000);
+			String result = r.reader("C:\\Users\\Martin\\Desktop\\Result.txt");
+			return result;
 		} else {
 			return "doesn't work";//Returns this in case of empty file
 		}
