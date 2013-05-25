@@ -5,7 +5,7 @@ An app for taking a picture and analyse number of blobs and total sum pixels' ar
 
 ## Getting Started
 
-git clone git:// github.com/lisarythenlarsson/TensionCamApp
+`git clone git:// github.com/lisarythenlarsson/TensionCamApp`
 
 ##Dependencies
 
