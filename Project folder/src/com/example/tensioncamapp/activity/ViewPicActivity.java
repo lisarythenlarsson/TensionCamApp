@@ -27,6 +27,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+
+/** 
+ * 
+ * @param result, Expected: A string with the number of pixels and number of blobs
+ *  
+ *  */
 public class ViewPicActivity extends Activity implements View.OnClickListener {
 
 	private Button discard;
@@ -86,26 +92,36 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 		}
 	}
 
+	/** Class that connects to the web server and sends a picture as a MultipartEntity to it. 
+	 * The picture is analyzed and a result is returned. After the response has been received it directs to the next activity.
+	 * @param answer, expected: String with number of pixels and blobs analyzed on the picture which was sent
+	 *  
+	 *  */
 	private class SendTask extends AsyncTask<String, String, String> {
 		private String answer;
 
+		
+		/** Method that works in the background which connects to the web server and sends a picture as a MultipartEntity to it. 
+		 * The picture is analyzed and a result is returned as a response.
+		 * @param responseanswer, expected: String with number of pixels and blobs analyzed on the picture which was sent 
+		 *  */
 		@Override
 		protected String doInBackground(String... params) {
 				
 			String filePath = params[0];
-			String responseAnswer = "Could not connect to server";
+			String responseAnswer = "The server is down";
 
 
 			HttpClient httpclient = new DefaultHttpClient();
 			try {
-				HttpPost httppost = new HttpPost("http://192.168.43.79:8080/Analyse/upload"); 
+				HttpPost httppost = new HttpPost("http://192.168.43.79:8080/Analyse/upload");//Creates the POST request
 				FileBody pic = new FileBody(new File(filePath)); 
-				MultipartEntity requestEntity = new MultipartEntity(); 
-				requestEntity.addPart("file", pic);
+				MultipartEntity requestEntity = new MultipartEntity();
+				requestEntity.addPart("file", pic);//Adds a file to the MultipartEntity
 
-				httppost.setEntity(requestEntity);
+				httppost.setEntity(requestEntity);//Adds the file to the POST request
 				System.out.println("executing request " + httppost.getRequestLine());
-				HttpResponse response = httpclient.execute(httppost);
+				HttpResponse response = httpclient.execute(httppost);//Executes the POST request and stores the response
 
 				System.out.println("-------------------------------------------------------");
 				System.out.println(response.getStatusLine());
@@ -123,13 +139,16 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 				e.printStackTrace();
 			} finally {
 				try {
-					httpclient.getConnectionManager().shutdown();
+					httpclient.getConnectionManager().shutdown();//Close connection to server
 				} catch (Exception ignore) {
 				}
 			}
 			return responseAnswer;
 		}
-
+		/**
+		 * This method is executed after the "doInBackground"-method. It makes the answer available to the whole activity.
+		 * It also starts the next activity.
+		 */
 		@Override
 		protected void onPostExecute(String result) {
 			this.answer = result;
@@ -140,10 +159,16 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 
 	}
 	
+	/** Method to set the result
+	 * Private so that the result can only be set here.
+	 */
 	private void set(String s){
 		result = s;
 	}
-	
+	/** Method that returns the result.
+	 * Accessible from other classes.
+	 * @return, 
+	 */
 	public static String get(){
 		return result;
 	}
@@ -154,6 +179,4 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 		this.discard.setEnabled(true);
 		this.analyze.setEnabled(true);
 	}
-	
-
 }

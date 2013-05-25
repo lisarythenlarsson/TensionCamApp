@@ -8,18 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-	<LinearLayout
-	    android:id="@+id/linearLayout1"
-	    android:layout_width="wrap_content"
-	    android:layout_height="50dp"
-	    android:layout_alignParentTop="true"
-	    android:layout_centerHorizontal="true"
-	    android:layout_marginTop="100dp"
-	    android:background="@drawable/logo"
-	    android:orientation="horizontal" >
-
-	</LinearLayout>
-
 	<ProgressBar
 	    android:id="@+id/progressBar1"
 	    android:layout_width="wrap_content"
@@ -27,5 +15,26 @@
 	    android:layout_below="@+id/linearLayout1"
 	    android:layout_centerHorizontal="true"
 	    android:layout_marginTop="88dp" />
+<!-- 
+	<LinearLayout
+	    android:id="@+id/linearLayout1"
+	    android:layout_width="400dp"
+	    android:layout_height="50dp"
+	    android:layout_centerHorizontal="true"
+	    android:layout_centerVertical="true"
+	    android:background="@drawable/logo"
+	    android:orientation="horizontal" >
+	</LinearLayout>
+-->	
+	
+	<LinearLayout
+	    android:id="@+id/linearLayout1"
+	    android:layout_width="350dp"
+	    android:layout_height="50dp"
+	    android:layout_centerHorizontal="true"
+	    android:layout_centerVertical="true"
+	    android:background="@drawable/tensioncam_logo"
+	    android:orientation="horizontal" >
+	</LinearLayout>
  
 </RelativeLayout>
