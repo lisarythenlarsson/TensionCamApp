@@ -29,10 +29,10 @@ WRITE HERE
 See the `Licens` file in the project root directory
 
 ##Project Team
-Lisa Rythén Larsson
-Max Dubois
-Martin Falk Danauskis
-Fredrik Johansson
+- Lisa Rythén Larsson
+- Max Dubois
+- Martin Falk Danauskis
+- Fredrik Johansson
 
 Developed at Chalmers University of Technology, Gothenburg 2013.
 
