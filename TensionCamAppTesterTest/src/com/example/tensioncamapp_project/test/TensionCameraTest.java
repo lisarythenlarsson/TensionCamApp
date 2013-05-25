@@ -1,4 +1,4 @@
-package com.example.tensioncamapp.ctrtest;
+package com.example.tensioncamapp_project.test;
 
 import android.hardware.Camera;
 import android.test.AndroidTestCase;

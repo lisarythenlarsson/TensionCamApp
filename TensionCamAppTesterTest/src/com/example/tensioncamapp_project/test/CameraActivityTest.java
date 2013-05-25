@@ -1,13 +1,10 @@
 package com.example.tensioncamapp_project.test;
 
-import android.hardware.Camera;
-import android.hardware.Camera.Parameters;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.TouchUtils;
 
-import com.example.tensioncamapp_project.CameraActivity;
-import com.example.tensioncamapp_project.FileHandler;
-import com.example.tensioncamapp_project.TensionCamera;
+import com.example.tensioncamapp.activity.CameraActivity;
+import com.example.tensioncamapp.utils.FileHandler;
 
 public class CameraActivityTest extends ActivityInstrumentationTestCase2<CameraActivity> {
 
@@ -29,16 +26,9 @@ public class CameraActivityTest extends ActivityInstrumentationTestCase2<CameraA
 	public void testCaptureButton() {
 		
 		FileHandler.deleteFromExternalStorage(); //wipes the directory
-		TouchUtils.clickView(this, cam.findViewById(com.example.tensioncamapp_project.R.id.button_capture_symbol)); //captures a picture
+		TouchUtils.clickView(this, cam.findViewById(com.example.tensioncamapp.activity.R.id.button_capture_symbol)); //captures a picture
 		assertTrue(!FileHandler.pathToString().isEmpty()); //checks that there is a file stores in the directory
-	
 	}	
-		
-	/**Checks that the method getCameraInstance returns an object of the type Camera */
-	public void testGetCameraInstance() {
-        assertTrue(TensionCamera.getCameraInstance().getClass() == Camera.class);
- 
-	}
-	
+
 	
 }
