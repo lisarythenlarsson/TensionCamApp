@@ -4,6 +4,12 @@ import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
 import android.util.Log;
 
+/**
+ * @author Lisa Rythén Larsson
+ * @copyright Lisa Rythén Larsson, Fredrik Johansson, Max Dubois, Martin Falk Danauskis
+ *  
+ *  */
+
 public class TensionCamera {
 	private static final String TAG = "CameraFeatures";
 	private Camera mCamera;
@@ -24,7 +30,6 @@ public class TensionCamera {
            Log.e(TAG, "camera not available" + e.getMessage()); // (in use or does not exist)
         }
         // returns null if camera is unavailable
-        System.out.println("printar c" + c);
         return c; 
     }
 	
