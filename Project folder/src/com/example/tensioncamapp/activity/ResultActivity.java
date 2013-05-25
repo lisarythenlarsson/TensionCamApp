@@ -10,6 +10,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+/**
+ * @author Lisa Rythén Larsson, Martin Falk Danauskis
+ * @copyright Lisa Rythén Larsson, Fredrik Johansson, Max Dubois, Martin Falk Danauskis
+ *  
+ *  */
+
 public class ResultActivity extends Activity implements View.OnClickListener {
 	
 	private TextView Result;
@@ -27,12 +33,6 @@ public class ResultActivity extends Activity implements View.OnClickListener {
 		addListenerOnButton();
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.result, menu);
-		return true;
-	}
 	
 	private void addListenerOnButton() {
 		this.newPic = (Button) findViewById(R.id.new_picture_button);
@@ -49,6 +49,14 @@ public class ResultActivity extends Activity implements View.OnClickListener {
 	@Override
 	protected void onResume() {
 		super.onResume();
+		//activate button when the activity is resumed
 		this.newPic.setEnabled(true);
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.result, menu);
+		return true;
 	}
 }

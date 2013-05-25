@@ -13,10 +13,17 @@ import android.hardware.Camera;
 import android.hardware.Camera.PictureCallback;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+
+/**
+ * @author Lisa Rythén Larsson, Fredrik Johansson
+ * @copyright Lisa Rythén Larsson, Fredrik Johansson, Max Dubois, Martin Falk Danauskis
+ *  
+ *  */
 
 public class CameraActivity extends Activity implements View.OnClickListener {
 	private ImageButton captureButton;
@@ -24,13 +31,15 @@ public class CameraActivity extends Activity implements View.OnClickListener {
 	private Camera mCamera;
     private CameraPreview mPreview;
     private TensionCamera mFeature;
+    //Callback interface used to supply image data from a photo capture.
     private PictureCallback mPicture;
     private static final int STD_DELAY = 1000;
     private static final int MEDIA_TYPE_IMAGE = 1;
 	protected static final String TAG = "CameraActivity";
+	// counter for when flash button has been clicked
 	private int flashclicks = 0;
 	    
-    /**Starts up the camera */
+   
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
@@ -103,18 +112,15 @@ public class CameraActivity extends Activity implements View.OnClickListener {
     /**Releasing the camera so that other applications can use the camera*/
 	private void releaseCamera(){
 		this.mPreview.getHolder().removeCallback(this.mPreview);
-		//Checks if there is a camera object active
 		if (this.mCamera != null){
-			//Releases the camera
-	        this.mCamera.release();
+			this.mCamera.release();
 	        //Restore the camera object to its initial state
 	        this.mCamera= null;
 	    }
 	}
-	
+	/**@result [Camera, PictureCallback, CameraPreview, TensionCamera]*/
 	/**Activates the camera and makes it appear on the screen */
 		protected void onResume() {
-		// deleting image from external storage
 		FileHandler.deleteFromExternalStorage();
 		// Create an instance of Camera.
 		this.mCamera = TensionCamera.getCameraInstance();
@@ -122,11 +128,8 @@ public class CameraActivity extends Activity implements View.OnClickListener {
 		this.mPreview = new CameraPreview(this, this.mCamera);
 		FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
 		preview.addView(this.mPreview);
-		//creating an TensionCamera instance to handle features
 		this.mFeature = new TensionCamera(this.mCamera);
-		// add the capture button
 		addListenerOnButton();
-		// In order to receive data in JPEG format
 		this.mPicture = new PictureCallback() {
 
 			/**
@@ -135,7 +138,6 @@ public class CameraActivity extends Activity implements View.OnClickListener {
 			 */
 			@Override
 			public void onPictureTaken(byte[] data, Camera mCamera) {
-				//creating an file to write the image to
 				File pictureFile = FileHandler.getOutputMediaFile(MEDIA_TYPE_IMAGE);
 
 				if (pictureFile == null) {
@@ -143,6 +145,7 @@ public class CameraActivity extends Activity implements View.OnClickListener {
 							"Error creating media file, check storage permissions");
 					return;
 				}
+				//saves data on created file
 				FileHandler.writeToFile(data, pictureFile);
 			}
 		};
@@ -150,7 +153,10 @@ public class CameraActivity extends Activity implements View.OnClickListener {
 		super.onResume();
 	}
 	
-
+		@Override
+		public boolean onCreateOptionsMenu(Menu menu) {
+			return super.onCreateOptionsMenu(menu);
+		}
 
 }
 

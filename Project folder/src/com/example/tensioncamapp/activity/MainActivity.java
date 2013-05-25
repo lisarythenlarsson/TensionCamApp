@@ -6,9 +6,19 @@ import com.example.tensioncamapp.activity.R;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 
+/**
+ * @author Lisa Rythén Larsson, Fredrik Johansson
+ * @copyright Lisa Rythén Larsson, Fredrik Johansson, Max Dubois, Martin Falk Danauskis
+ *  
+ *  */
+
 public class MainActivity extends Activity {
+
+
+	protected static final String TAG = "MainActivity";
 
 
 	@Override
@@ -16,11 +26,12 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		Thread timer = new Thread (){
+			//Sets an timer for the activity
 			public void run(){
 				try {
-					sleep(4000);
+					sleep(6000);
 				}catch (InterruptedException e){
-					e.printStackTrace();
+					Log.d(TAG, "failed to sleep" + e.getMessage());
 				}finally {
 					Intent openCamActivity = new Intent(MainActivity.this, CameraActivity.class);
 					startActivity(openCamActivity);
@@ -31,7 +42,7 @@ public class MainActivity extends Activity {
 	}
 	
 	
-	@Override
+	@Override /**removes activity from stack when paused*/
 	protected void onPause() {
 		super.onPause();
 		finish();

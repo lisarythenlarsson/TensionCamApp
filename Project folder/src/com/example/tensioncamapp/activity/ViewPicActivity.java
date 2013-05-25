@@ -21,6 +21,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -29,9 +30,9 @@ import android.widget.ProgressBar;
 
 
 /** 
- * 
- * @param result, Expected: A string with the number of pixels and number of blobs
- *  
+ * @author Lisa Rythén Larsson, Fredrik Johansson
+ * @copyright Lisa Rythén Larsson, Fredrik Johansson, Max Dubois, Martin Falk Danauskis
+ * @param responeanswer: result from the analyze 
  *  */
 public class ViewPicActivity extends Activity implements View.OnClickListener {
 
@@ -50,12 +51,6 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 		addListenerOnButton();
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.view_pic, menu);
-		return true;
-	}
 
 	private void addListenerOnButton() {
 
@@ -92,18 +87,20 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 		}
 	}
 
-	/** Class that connects to the web server and sends a picture as a MultipartEntity to it. 
-	 * The picture is analyzed and a result is returned. After the response has been received it directs to the next activity.
-	 * @param answer, expected: String with number of pixels and blobs analyzed on the picture which was sent
-	 *  
+	/** Inner class that connects to the web server and 
+	 * sends a picture as a MultipartEntity. 
+	 * The picture is analyzed and a result is returned. 
+	 * After the response has been received it directs to the next activity.
 	 *  */
 	private class SendTask extends AsyncTask<String, String, String> {
+		private static final String TAG = "SendTask";
 		private String answer;
 
 		
 		/** Method that works in the background which connects to the web server and sends a picture as a MultipartEntity to it. 
 		 * The picture is analyzed and a result is returned as a response.
-		 * @param responseanswer, expected: String with number of pixels and blobs analyzed on the picture which was sent 
+		 * @param responseanswer
+		 * @return String with number of pixels and blobs analyzed on the picture which was sent 
 		 *  */
 		@Override
 		protected String doInBackground(String... params) {
@@ -134,13 +131,14 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 				System.out.println(responseAnswer);
 
 			} catch (ClientProtocolException e) {
-				e.printStackTrace();
+				Log.e(TAG, "error in the HTTP protocol" +e.getMessage());
 			} catch (IOException e) {
-				e.printStackTrace();
+				Log.e(TAG, e.getMessage());
 			} finally {
 				try {
 					httpclient.getConnectionManager().shutdown();//Close connection to server
 				} catch (Exception ignore) {
+					Log.d(TAG, "server shutdown failed" +ignore.getMessage());
 				}
 			}
 			return responseAnswer;
@@ -162,12 +160,11 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 	/** Method to set the result
 	 * Private so that the result can only be set here.
 	 */
-	private void set(String s){
+	static void set(String s){
 		result = s;
 	}
 	/** Method that returns the result.
-	 * Accessible from other classes.
-	 * @return, 
+	 * Accessible from other classes. 
 	 */
 	public static String get(){
 		return result;
@@ -176,7 +173,15 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 	@Override
 	protected void onResume() {
 		super.onResume();
+		//activate buttons when activity is resumed
 		this.discard.setEnabled(true);
 		this.analyze.setEnabled(true);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.view_pic, menu);
+		return true;
 	}
 }
