@@ -1,4 +1,3 @@
-<<<<<<< HEAD:Project folder/AndroidManifest.xml
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.tensioncamapp.activity"
@@ -8,43 +7,6 @@
     <uses-sdk
         android:minSdkVersion="16"
         android:targetSdkVersion="16" />
-
-    <instrumentation
-        android:name="android.test.InstrumentationTestRunner"
-        android:label="Test1"
-        android:targetPackage="com.example.tensionnsioncamapp_project" />
-   
-    /** asks for permission to access Internet */
-    <uses-permission android:name="android.permission.INTERNET" />
-    
-    /** asks for permission to access camera hardware */
-    <uses-permission android:name="android.permission.CAMERA" />
-   
-    /** asks for permission to write an external storage*/
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    
-    /** asks for permission to access flash*/
-    <uses-permission
-        android:name="android.permission.FLASHLIGHT"
-        android:permissionGroup="android.permission-group.HARDWARE_CONTROLS"
-        android:protectionLevel="normal" />
- 	
-    /**checks if flash exists*/
-    <uses-feature android:name="android.hardware.flash" />
-   
-    /**checks if camera hardware exists*/
-    <uses-feature android:name="android.hardware.camera" />
-=======
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.tensioncamapp.activity"
-    android:versionCode="1"
-    android:versionName="1.0" >
->>>>>>> autotests:TensionCamApp/AndroidManifest.xml
-
-    <uses-sdk
-        android:minSdkVersion="15"
-        android:targetSdkVersion="17" />
 
     <instrumentation
         android:name="android.test.InstrumentationTestRunner"
