@@ -1,6 +1,9 @@
 package com.example.tensioncamapp.utils;
 
-/**
+ /**
+ * @author Lisa Rythén Larsson, Fredrik Johansson
+ * @copyright Lisa Rythén Larsson, Fredrik Johansson, Max Dubois, Martin Falk Danauskis
+ * 
  * Copyright 2013 Fredrik Johansson, Lisa RythÈn Larsson, Martin Falk Danauskis, Max Dubois
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,7 +17,9 @@ package com.example.tensioncamapp.utils;
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *  
+ *  */
+
 
 import java.io.File;
 import java.io.FileNotFoundException;
