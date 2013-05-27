@@ -30,7 +30,7 @@ public class TensionCameraTest extends AndroidTestCase {
 	/**
 	 * Checks that the method getCameraInstance returns an object of the type Camera 
 	 * Requires an SD-card
-	 * TestID: TC06
+	 * TestID: TC07
 	 */
 	public void testGetCameraInstance() {
 		assertTrue(TensionCamera.getCameraInstance().getClass() == Camera.class); 

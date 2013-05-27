@@ -32,17 +32,25 @@ import android.test.AndroidTestCase;
 
 public class FileHandlerTest extends AndroidTestCase {
 	
-	private int mediaTypeImage = 1; //The int 1 represents an image file
+	private int GoodInput = 1; //The int 1 represents an image file
+	private int BadInput = 2; //This int does NOT represent an image file
 
-	/**Checks that getOutputMediaFileTest dosen't manipulate the type of the file
+	/**Checks that getOutputMediaFile() dosen't manipulate the type of the file
 	 * TestID: TC02  */
-	public void getOutputMediaFileTest(int mediaTypeImage){
-		final File mFile = FileHandler.getOutputMediaFile(this.mediaTypeImage);
-		assertTrue(mFile.getClass() == File.class); //checks that the mFile still is of the type File
+	public void getOutputMediaFileTest1(){
+		final File file = FileHandler.getOutputMediaFile(GoodInput);
+		assertTrue(file.getClass().equals(File.class)); //checks that the mFile still is of the type File
+	}
+	
+	/**Checks that a bad input to getOutputMediaFile() does not crash the program
+	 * TestID: TC03 */
+	
+	public void getOutputMediaFileTest2(){
+		final File file = FileHandler.getOutputMediaFile(BadInput); //Provides the method() with faulty input
 	}
 	
 	/**Verifies that the deleteFromExternalStorage() method deletes files 
-	 * TestID: TC03*/
+	 * TestID: TC04*/
 	public void deleteFromExternalStorageTest1() throws IOException {
 		String s = "Hello World!"; 
 		byte[] bytes = s.getBytes(); //Converts the string 'Hello World!' to bytes
@@ -55,7 +63,7 @@ public class FileHandlerTest extends AndroidTestCase {
 		assertFalse(file.exists()); //checks that the file is deleted
 	}
 	/** Verifies that the method deleteFromExternalStorage() dosen't crash the program is there are no files to delete 
-	 * TestID: TC04*/
+	 * TestID: TC05*/
 	public void deleteFromExternalStorageTest2() throws IOException {
 		File file = new File(FileHandler.pathToString()); //saves a new file or over an existing one one a given location 
         if(file.exists()){
@@ -69,7 +77,7 @@ public class FileHandlerTest extends AndroidTestCase {
 	/**
 	 * Verifies that writeToFile actually writes a file to the disc with the given input
 	 * Requires an SD-card because the path file is set to a external storage
-	 *  TestID: TC05
+	 *  TestID: TC06
 	 * @throws IOException
 	 */
 	

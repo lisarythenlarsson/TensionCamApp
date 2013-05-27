@@ -30,7 +30,7 @@ import android.widget.ProgressBar;
 
 
 /** 
- * @author Lisa Rythén Larsson, Fredrik Johansson, Martin Falk Danauskis
+ * @author Lisa Rythén Larsson, Fredrik Johansson, Martin Falk Danauskis, Max Dubois
  * @copyright Lisa Rythén Larsson, Fredrik Johansson, Max Dubois, Martin Falk Danauskis
  * @param responeanswer: result from the analyze 
  * 
