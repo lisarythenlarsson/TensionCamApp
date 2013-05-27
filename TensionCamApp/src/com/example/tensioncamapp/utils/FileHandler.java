@@ -40,28 +40,27 @@ public class FileHandler {
     public static File getOutputMediaFile(int mediaTypeImage) {
 		if (!isExternalStorageWritable()){ //checking if the external storage is accessible
 			Log.d(TAG,"Can't access the external storage");
-			return null;
+		return null;
 		}//creating a file for storage directory
-				File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-	    		Environment.DIRECTORY_PICTURES), "TensionCamApp");
+		File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
+	    Environment.DIRECTORY_PICTURES), "TensionCamApp");
 		    	
-			// Creating the storage directory if it does not exist
-		    	if (! mediaStorageDir.exists()){
-		    		if (! mediaStorageDir.mkdirs()){
-		    			Log.d("TensionCamApp", "failed to create directory");
-		    			return null;
-		    		}
-		    	}
+		// Creating the storage directory if it does not exist
+		if (! mediaStorageDir.exists()){
+			if (! mediaStorageDir.mkdirs()){
+				Log.d("TensionCamApp", "failed to create directory");
+		    return null;
+		    }
+		}
 
-		    	// Creating a media file name
-		    	File mediaFile;
-		    	if (mediaTypeImage == MEDIA_TYPE_IMAGE){
-		    		mediaFile = new File(pathToString());
-		    	} else {
-		    		return null;
-		    	}
-
-		    	return mediaFile;
+		// Creating a media file name
+		File mediaFile;
+		if (mediaTypeImage == MEDIA_TYPE_IMAGE){
+			mediaFile = new File(pathToString());
+		} else {
+			return null;
+		}
+	   	return mediaFile;
 	}
 
      /**Creating a name of file in the right directory. Nämn också att filnamnet är hårdkodat*/
