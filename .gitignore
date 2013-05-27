@@ -27,9 +27,5 @@ proguard/
 
 # OS-specific thumb files
 .DS_Store
-<<<<<<< HEAD
 Thumbs.db
 
-=======
-Thumbs.db
->>>>>>> progressbar

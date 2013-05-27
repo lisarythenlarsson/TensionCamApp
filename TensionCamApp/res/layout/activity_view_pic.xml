@@ -1,0 +1,39 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/FrameLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" >
+    </ImageView>
+
+    <Button
+        android:id="@+id/analyze_button"
+        android:layout_width="160dp"
+        android:layout_height="72dp"
+        android:background="@drawable/button_analyze"
+        android:layout_gravity="right|center_horizontal|bottom"
+        android:text="@string/analyze_button" 
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/discard_button"
+        android:layout_width="160dp"
+        android:layout_height="72dp"
+        android:background="@drawable/button_discard"
+        android:drawableLeft="@drawable/camera_symbol"
+        android:layout_gravity="left|center_horizontal|bottom"
+        android:text="@string/take_picture" 
+        android:textSize = "20sp"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+</FrameLayout>
