@@ -22,6 +22,7 @@ package com.example.tensioncamapp.test;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -43,7 +44,12 @@ public class FileHandlerTest extends AndroidTestCase {
 	/**Verifies that the deleteFromExternalStorage() method deletes files 
 	 * TestID: TC03*/
 	public void deleteFromExternalStorageTest1() throws IOException {
+		String s = "Hello World!"; 
+		byte[] bytes = s.getBytes(); //Converts the string 'Hello World!' to bytes
 		File file = new File(FileHandler.pathToString()); //creates a file at the location from the pathToString() method
+		FileOutputStream fos = new FileOutputStream(file);
+		fos.write(bytes);
+		fos.close();
 		assertTrue(file.exists()); //checks that a file is created
 		FileHandler.deleteFromExternalStorage(); //deletes the file by using the method deleteFromExternalStorage()
 		assertFalse(file.exists()); //checks that the file is deleted
