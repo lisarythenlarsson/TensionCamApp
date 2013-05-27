@@ -42,7 +42,8 @@ public class CameraActivityTest extends ActivityInstrumentationTestCase2<CameraA
 		cam = getActivity();
 	}
 	
-	/**Checks that a picture is being saved once the capture button is pressed*/
+	/**Checks that a picture is being saved once the capture button is pressed
+	 * TestID: TC01*/
 	public void testCaptureButton() {
 		FileHandler.deleteFromExternalStorage(); //wipes the directory
 		TouchUtils.clickView(this, cam.findViewById(com.example.tensioncamapp.activity.R.id.button_capture_symbol)); //captures a picture

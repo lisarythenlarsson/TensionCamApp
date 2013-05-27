@@ -33,20 +33,23 @@ public class FileHandlerTest extends AndroidTestCase {
 	
 	private int mediaTypeImage = 1; //The int 1 represents an image file
 
-	/**Checks that getOutputMediaFileTest dosen't manipulate the type of the file  */
+	/**Checks that getOutputMediaFileTest dosen't manipulate the type of the file
+	 * TestID: TC02  */
 	public void getOutputMediaFileTest(int mediaTypeImage){
 		final File mFile = FileHandler.getOutputMediaFile(this.mediaTypeImage);
 		assertTrue(mFile.getClass() == File.class); //checks that the mFile still is of the type File
 	}
 	
-	/**Verifies that the deleteFromExternalStorage() method deletes files */
+	/**Verifies that the deleteFromExternalStorage() method deletes files 
+	 * TestID: TC03*/
 	public void deleteFromExternalStorageTest1() throws IOException {
 		File file = new File(FileHandler.pathToString()); //creates a file at the location from the pathToString() method
 		assertTrue(file.exists()); //checks that a file is created
 		FileHandler.deleteFromExternalStorage(); //deletes the file by using the method deleteFromExternalStorage()
 		assertFalse(file.exists()); //checks that the file is deleted
 	}
-	/** Verifies that the method deleteFromExternalStorage() dosen't crash the program is there are no files to delete */
+	/** Verifies that the method deleteFromExternalStorage() dosen't crash the program is there are no files to delete 
+	 * TestID: TC04*/
 	public void deleteFromExternalStorageTest2() throws IOException {
 		File file = new File(FileHandler.pathToString()); //saves a new file or over an existing one one a given location 
         if(file.exists()){
@@ -60,7 +63,7 @@ public class FileHandlerTest extends AndroidTestCase {
 	/**
 	 * Verifies that writeToFile actually writes a file to the disc with the given input
 	 * Requires an SD-card because the path file is set to a external storage
-	 *  
+	 *  TestID: TC05
 	 * @throws IOException
 	 */
 	
