@@ -70,6 +70,8 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 
 		this.discard = (Button) findViewById(R.id.discard_button);
 		this.analyze = (Button) findViewById(R.id.analyze_button);
+		
+		this.progressBar = (ProgressBar) findViewById(R.id.progressBar);
 		 
 		this.discard.setOnClickListener(this);
 		this.analyze.setOnClickListener(this);
@@ -89,7 +91,7 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 			break;
 		case R.id.analyze_button:
 			this.analyze.setEnabled(false);
-			this.progressBar = (ProgressBar) findViewById(R.id.progressBar);
+			
 			this.progressBar.setVisibility(0);
 			String path = FileHandler.pathToString();
 			try {
@@ -187,6 +189,7 @@ public class ViewPicActivity extends Activity implements View.OnClickListener {
 	@Override
 	protected void onResume() {
 		super.onResume();
+		this.progressBar.setVisibility(4);
 		//activate buttons when activity is resumed
 		this.discard.setEnabled(true);
 		this.analyze.setEnabled(true);
