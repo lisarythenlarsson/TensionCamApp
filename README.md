@@ -11,7 +11,7 @@ An app for taking a picture and analyse number of blobs and total sum pixels' ar
 
 - Android SDK
 - An actual (preferred) or virtual Android device
-- Java XX XX (6 SE) development environment
+- Java (6 SE) development environment
 
 ###Android SDK Targets
 - Minimum SDK: 16
@@ -36,7 +36,7 @@ Note that the main project ‘TensionCamApp’ needs to be included in the build
 
 
 ##License
-See the `Licens` file in the project root directory
+See the `Licens` file in the doc folder in root directory.
 
 ##Project Team
 - Lisa Rythén Larsson
