@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-   <color name="red_changed">#CC0000</color>
-   <color name="red_default">#FF4444</color>
-	<color name="green_default">#99CC00</color>
-	<color name="green_changed">#669900</color>
-</resources>
